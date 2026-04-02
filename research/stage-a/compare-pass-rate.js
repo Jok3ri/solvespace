@@ -24,17 +24,13 @@ if (!fs.existsSync(currentDetailPath)) {
 const current = readJson(currentPath);
 const currentDetail = readJson(currentDetailPath);
 
-if (!fs.existsSync(baselinePath)) {
-  console.log('No baseline found. Creating baseline from current report.');
-  fs.writeFileSync(baselinePath, JSON.stringify(current, null, 2));
-  fs.writeFileSync(baselineDetailPath, JSON.stringify(currentDetail, null, 2));
-  process.exit(0);
+if (!fs.existsSync(baselinePath) || !fs.existsSync(baselineDetailPath)) {
+  console.error('Missing baseline artifacts. Expected pass-rate-baseline.json and pass-rate-baseline-detail.json.');
+  console.error('Run ./research/stage-a/update-baseline.sh explicitly to (re)create baselines.');
+  process.exit(2);
 }
 
 const baseline = readJson(baselinePath);
-if (!fs.existsSync(baselineDetailPath)) {
-  fs.writeFileSync(baselineDetailPath, JSON.stringify(currentDetail, null, 2));
-}
 const baselineDetail = readJson(baselineDetailPath);
 
 function delta(cur, base) {
