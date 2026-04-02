@@ -1,0 +1,23 @@
+{
+  "name": "well_constrained_pair_01",
+  "type": "constraint-classification",
+  "inputs": {
+    "entities": {
+      "points": [
+        { "id": "p1", "x": 0.0, "y": 0.0 },
+        { "id": "p2", "x": 10.0, "y": 0.0 }
+      ]
+    },
+    "constraints": [
+      { "id": "c1", "kind": "distance", "a": "p1", "b": "p2", "value": 10.0 },
+      { "id": "c2", "kind": "horizontal", "a": "p1", "b": "p2" }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "solver_classification", "value": "well_constrained" }
+    ]
+  },
+  "tags": ["constraint", "classification", "well_constrained"]
+}

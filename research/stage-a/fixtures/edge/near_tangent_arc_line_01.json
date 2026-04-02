@@ -1,0 +1,35 @@
+{
+  "name": "near_tangent_arc_line_01",
+  "type": "intersection",
+  "inputs": {
+    "entities": {
+      "arc": {
+        "cx": 0.0,
+        "cy": 0.0,
+        "r": 10.0,
+        "a0": 1.35,
+        "a1": 1.79
+      },
+      "line": {
+        "x1": -20.0,
+        "y1": 9.999999,
+        "x2": 20.0,
+        "y2": 9.999999
+      }
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "intersection_count",
+        "value": 2,
+        "eps": 1e-07
+      }
+    ]
+  },
+  "tags": [
+    "intersection",
+    "tangent"
+  ]
+}
