@@ -1,0 +1,33 @@
+{
+  "name": "near_parallel_lines_01",
+  "type": "intersection",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10000.0,
+        "y2": 0.001
+      },
+      "lineB": {
+        "x1": 0.0,
+        "y1": 1.0,
+        "x2": 10000.0,
+        "y2": 1.001
+      }
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "classified_as_parallel",
+        "eps": 1e-09
+      }
+    ]
+  },
+  "tags": [
+    "intersection",
+    "parallel"
+  ]
+}

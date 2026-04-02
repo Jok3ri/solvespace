@@ -1,0 +1,251 @@
+{
+  "generatedAt": "2026-04-02T05:24:04.646Z",
+  "core": [
+    {
+      "name": "chamfer_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "chamfer"
+      ]
+    },
+    {
+      "name": "coincident_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "coincident",
+        "constraint"
+      ]
+    },
+    {
+      "name": "distance_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "distance"
+      ]
+    },
+    {
+      "name": "extend_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "extend"
+      ]
+    },
+    {
+      "name": "extend_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "extend"
+      ]
+    },
+    {
+      "name": "fillet_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet"
+      ]
+    },
+    {
+      "name": "fillet_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet"
+      ]
+    },
+    {
+      "name": "horizontal_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "horizontal"
+      ]
+    },
+    {
+      "name": "tangent_line_circle_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "tangent"
+      ]
+    },
+    {
+      "name": "trim_basic_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "trim"
+      ]
+    },
+    {
+      "name": "vertical_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "vertical"
+      ]
+    }
+  ],
+  "edge": [
+    {
+      "name": "almost_coincident_points_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "coincident",
+        "constraint"
+      ]
+    },
+    {
+      "name": "chamfer_small_angle_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "chamfer"
+      ]
+    },
+    {
+      "name": "near_parallel_lines_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "intersection",
+        "parallel"
+      ]
+    },
+    {
+      "name": "near_singular_distance_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "distance",
+        "near-singular"
+      ]
+    },
+    {
+      "name": "near_tangent_arc_line_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "intersection",
+        "tangent"
+      ]
+    },
+    {
+      "name": "tiny_radius_fillet_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet"
+      ]
+    }
+  ],
+  "tags": {
+    "edit-op": {
+      "total": 8,
+      "passed": 8
+    },
+    "chamfer": {
+      "total": 2,
+      "passed": 2
+    },
+    "coincident": {
+      "total": 2,
+      "passed": 2
+    },
+    "constraint": {
+      "total": 7,
+      "passed": 7
+    },
+    "distance": {
+      "total": 2,
+      "passed": 2
+    },
+    "extend": {
+      "total": 2,
+      "passed": 2
+    },
+    "fillet": {
+      "total": 3,
+      "passed": 3
+    },
+    "horizontal": {
+      "total": 1,
+      "passed": 1
+    },
+    "tangent": {
+      "total": 2,
+      "passed": 2
+    },
+    "trim": {
+      "total": 1,
+      "passed": 1
+    },
+    "vertical": {
+      "total": 1,
+      "passed": 1
+    },
+    "intersection": {
+      "total": 2,
+      "passed": 2
+    },
+    "parallel": {
+      "total": 1,
+      "passed": 1
+    },
+    "near-singular": {
+      "total": 1,
+      "passed": 1
+    }
+  },
+  "gates": {
+    "core_rate_min": 1,
+    "edge_rate_min": 0.95,
+    "tag_rate_min": {
+      "constraint": 1,
+      "intersection": 1,
+      "edit-op": 0.95
+    }
+  },
+  "gateResult": {
+    "core_ok": true,
+    "edge_ok": true,
+    "tag_failures": [],
+    "ok": true
+  }
+}
