@@ -1,0 +1,43 @@
+{
+  "name": "almost_coincident_points_01",
+  "type": "constraint",
+  "inputs": {
+    "entities": {
+      "points": [
+        {
+          "id": "p1",
+          "x": 0.0,
+          "y": 0.0
+        },
+        {
+          "id": "p2",
+          "x": 1e-08,
+          "y": -1e-08
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "kind": "coincident",
+        "a": "p1",
+        "b": "p2"
+      }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "point_equal",
+        "a": "p1",
+        "b": "p2",
+        "eps": 1e-07
+      }
+    ]
+  },
+  "tags": [
+    "coincident",
+    "constraint"
+  ]
+}
