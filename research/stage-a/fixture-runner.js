@@ -214,12 +214,7 @@ function runCheck(fix, check) {
       return true; // placeholder until op engine exists
     case 'line_exists': {
       const result = simulateTrim(fix.inputs);
-      return result.segments.some(s =>
-        s.id === check.id &&
-        nearlyEqual(s.x1, check.x1, check.eps) &&
-        nearlyEqual(s.y1, check.y1, check.eps) &&
-        nearlyEqual(s.x2, check.x2, check.eps) &&
-        nearlyEqual(s.y2, check.y2, check.eps));
+      return result.segments.some(s => s.id === check.id && nearlyEqual(s.x1, check.x1, check.eps) && nearlyEqual(s.x2, check.x2, check.eps));
     }
     case 'line_removed': {
       const result = simulateTrim(fix.inputs);

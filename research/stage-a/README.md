@@ -50,8 +50,6 @@ Stage A+ required research backlog: `research/stage-a/next-research-backlog.md`.
 Stage A capability matrix seed: `research/stage-a/capability-matrix-seed.md`.
 Deterministic repeat protocol: `research/stage-a/deterministic-repeat-protocol.md`.
 Stage B/C trace capture template: `research/stage-a/stage-bc-trace-capture-template.md`.
-Under/over-constrained fixture design draft: `research/stage-a/under-over-constrained-fixture-design.md`.
-Code-review issues intake template: `research/stage-a/review-issues-intake-template.md`.
 Stage D kickoff: `research/stage-a/stage-d-kickoff-checklist.md`.
 
 Stage D explainer: `research/stage-a/stage-d-what-happens.md`.

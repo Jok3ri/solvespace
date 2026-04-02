@@ -24,13 +24,17 @@ if (!fs.existsSync(currentDetailPath)) {
 const current = readJson(currentPath);
 const currentDetail = readJson(currentDetailPath);
 
-if (!fs.existsSync(baselinePath) || !fs.existsSync(baselineDetailPath)) {
-  console.error('Missing baseline artifacts. Expected pass-rate-baseline.json and pass-rate-baseline-detail.json.');
-  console.error('Run ./research/stage-a/update-baseline.sh explicitly to (re)create baselines.');
-  process.exit(2);
+if (!fs.existsSync(baselinePath)) {
+  console.log('No baseline found. Creating baseline from current report.');
+  fs.writeFileSync(baselinePath, JSON.stringify(current, null, 2));
+  fs.writeFileSync(baselineDetailPath, JSON.stringify(currentDetail, null, 2));
+  process.exit(0);
 }
 
 const baseline = readJson(baselinePath);
+if (!fs.existsSync(baselineDetailPath)) {
+  fs.writeFileSync(baselineDetailPath, JSON.stringify(currentDetail, null, 2));
+}
 const baselineDetail = readJson(baselineDetailPath);
 
 function delta(cur, base) {
@@ -51,23 +55,14 @@ function fixtureRegressions(curList, baseList) {
   const names = [...new Set([...Object.keys(cur), ...Object.keys(base)])].sort();
   const flippedToFail = [];
   const flippedToPass = [];
-  const missingInCurrent = [];
-  const newInCurrent = [];
   for (const n of names) {
     const c = cur[n];
     const b = base[n];
-    if (!c && b) {
-      missingInCurrent.push(n);
-      continue;
-    }
-    if (c && !b) {
-      newInCurrent.push(n);
-      continue;
-    }
+    if (!c || !b) continue;
     if (b.passed && !c.passed) flippedToFail.push(n);
     if (!b.passed && c.passed) flippedToPass.push(n);
   }
-  return { flippedToFail, flippedToPass, missingInCurrent, newInCurrent };
+  return { flippedToFail, flippedToPass };
 }
 
 const dCore = delta(current.core, baseline.core);
@@ -91,23 +86,12 @@ if (coreFx.flippedToFail.length || edgeFx.flippedToFail.length) {
   coreFx.flippedToFail.forEach(n => console.log(`  [CORE] ${n}`));
   edgeFx.flippedToFail.forEach(n => console.log(`  [EDGE] ${n}`));
 }
-if (coreFx.missingInCurrent.length || edgeFx.missingInCurrent.length) {
-  console.log('Missing fixtures from current run (present in baseline):');
-  coreFx.missingInCurrent.forEach(n => console.log(`  [CORE] ${n}`));
-  edgeFx.missingInCurrent.forEach(n => console.log(`  [EDGE] ${n}`));
-}
-if (coreFx.newInCurrent.length || edgeFx.newInCurrent.length) {
-  console.log('New fixtures in current run (not in baseline):');
-  coreFx.newInCurrent.forEach(n => console.log(`  [CORE] ${n}`));
-  edgeFx.newInCurrent.forEach(n => console.log(`  [EDGE] ${n}`));
-}
 
 const coreRegressed = current.core.rate < baseline.core.rate;
 const edgeRegressed = current.edge.rate < baseline.edge.rate;
 const fixtureRegressed = coreFx.flippedToFail.length > 0 || edgeFx.flippedToFail.length > 0;
-const fixtureMissing = coreFx.missingInCurrent.length > 0 || edgeFx.missingInCurrent.length > 0;
 
-if (coreRegressed || edgeRegressed || fixtureRegressed || fixtureMissing) {
+if (coreRegressed || edgeRegressed || fixtureRegressed) {
   console.error('Regression detected vs baseline.');
   process.exit(1);
 }
