@@ -19,7 +19,7 @@ Stage A is **in progress**.
 
 ## What remains for Stage A completion
 
-1. Add broader multi-pair/multi-entity conflict variants beyond current O3 coverage.
+1. Continue broadening multi-entity conflict variants and solver-classification edge families.
 2. Add topology invariant checks (connectivity/entity continuity).
 3. Add offset fixture family (simple/corner/self-intersection).
 4. Add deterministic repeat execution outputs into reports.
@@ -37,4 +37,4 @@ Stage A is considered complete when all are true:
 
 ## Next research action (starting now)
 
-Implement multi-pair conflict fixtures where one pair is consistent and another pair conflicts.
+Add first topology invariant checks for edit-op outputs (entity continuity and endpoint consistency).
