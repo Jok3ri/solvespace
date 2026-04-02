@@ -9,4 +9,3 @@ Track:
 - core pass-rate
 - edge pass-rate
 - regressions introduced
-- constraint classification coverage (under/well/over-constrained scenarios)

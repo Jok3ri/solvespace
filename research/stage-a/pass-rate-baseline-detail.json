@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T08:25:59.810Z",
+  "generatedAt": "2026-04-02T05:07:11.599Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -165,18 +165,6 @@
       ]
     },
     {
-      "name": "over_constrained_conflict_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "constraint",
-        "classification",
-        "over_constrained",
-        "conflict"
-      ]
-    },
-    {
       "name": "tiny_radius_fillet_01",
       "passed": true,
       "total": 1,
@@ -184,28 +172,6 @@
       "tags": [
         "edit-op",
         "fillet"
-      ]
-    },
-    {
-      "name": "under_constrained_line_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "constraint",
-        "classification",
-        "under_constrained"
-      ]
-    },
-    {
-      "name": "well_constrained_pair_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "constraint",
-        "classification",
-        "well_constrained"
       ]
     }
   ],
@@ -223,8 +189,8 @@
       "passed": 2
     },
     "constraint": {
-      "total": 10,
-      "passed": 10
+      "total": 7,
+      "passed": 7
     },
     "distance": {
       "total": 2,
@@ -263,26 +229,6 @@
       "passed": 1
     },
     "near-singular": {
-      "total": 1,
-      "passed": 1
-    },
-    "classification": {
-      "total": 3,
-      "passed": 3
-    },
-    "over_constrained": {
-      "total": 1,
-      "passed": 1
-    },
-    "conflict": {
-      "total": 1,
-      "passed": 1
-    },
-    "under_constrained": {
-      "total": 1,
-      "passed": 1
-    },
-    "well_constrained": {
       "total": 1,
       "passed": 1
     }

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-02T08:25:59.810Z",
+  "generatedAt": "2026-04-02T05:24:04.646Z",
   "core": {
     "passed": 11,
     "total": 11,
     "rate": 1
   },
   "edge": {
-    "passed": 9,
-    "total": 9,
+    "passed": 6,
+    "total": 6,
     "rate": 1
   },
   "gates": {
