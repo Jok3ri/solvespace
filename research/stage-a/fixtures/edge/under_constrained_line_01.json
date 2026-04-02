@@ -1,0 +1,22 @@
+{
+  "name": "under_constrained_line_01",
+  "type": "constraint-classification",
+  "inputs": {
+    "entities": {
+      "points": [
+        { "id": "p1", "x": 0.0, "y": 0.0 },
+        { "id": "p2", "x": 10.0, "y": 2.0 }
+      ]
+    },
+    "constraints": [
+      { "id": "c1", "kind": "distance", "a": "p1", "b": "p2", "value": 10.1980390272 }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "solver_classification", "value": "under_constrained" }
+    ]
+  },
+  "tags": ["constraint", "classification", "under_constrained"]
+}
