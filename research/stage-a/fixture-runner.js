@@ -109,8 +109,11 @@ function simulateExtend(inputs) {
   const vy = l.y2 - l.y1;
 
   if (op.direction === 'positive_x') {
-    if (p.x <= l.x2) return null;
-    return { id: 'l0_extended', x1: l.x1, y1: l.y1, x2: p.x, y2: p.y };
+    const maxX = Math.max(l.x1, l.x2);
+    if (p.x <= maxX) return null;
+    const keepFirst = (l.x1 < l.x2) || (nearlyEqual(l.x1, l.x2, 1e-12) && l.y1 <= l.y2);
+    const keep = keepFirst ? { x: l.x1, y: l.y1 } : { x: l.x2, y: l.y2 };
+    return { id: 'l0_extended', x1: keep.x, y1: keep.y, x2: p.x, y2: p.y };
   }
 
   if (op.direction === 'forward') {
@@ -559,6 +562,11 @@ function runCheck(fix, check) {
       const result = simulateExtend(fix.inputs);
       if (!result) return false;
       return nearlyEqual(result.x2, check.x2, check.eps) && nearlyEqual(result.y2, check.y2, check.eps);
+    }
+    case 'extend_line_start': {
+      const result = simulateExtend(fix.inputs);
+      if (!result) return false;
+      return nearlyEqual(result.x1, check.x1, check.eps) && nearlyEqual(result.y1, check.y1, check.eps);
     }
     case 'extend_nonzero_length': {
       const result = simulateExtend(fix.inputs);

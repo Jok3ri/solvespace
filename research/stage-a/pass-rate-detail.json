@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T17:46:41.134Z",
+  "generatedAt": "2026-04-03T18:04:58.111Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -239,6 +239,38 @@
           "index": 0,
           "id": null,
           "kind": "chamfer_points",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "extend_positive_x_reversed_endpoints_01",
+      "passed": true,
+      "total": 3,
+      "passedChecks": 3,
+      "tags": [
+        "edit-op",
+        "extend",
+        "topology",
+        "edge-ordering"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "extend_line_start",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": null,
+          "kind": "extend_line_end",
+          "passed": true
+        },
+        {
+          "index": 2,
+          "id": null,
+          "kind": "extend_nonzero_length",
           "passed": true
         }
       ]
@@ -948,8 +980,8 @@
   ],
   "tags": {
     "edit-op": {
-      "total": 25,
-      "passed": 25
+      "total": 26,
+      "passed": 26
     },
     "chamfer": {
       "total": 3,
@@ -968,8 +1000,8 @@
       "passed": 2
     },
     "extend": {
-      "total": 3,
-      "passed": 3
+      "total": 4,
+      "passed": 4
     },
     "fillet": {
       "total": 4,
@@ -988,6 +1020,14 @@
       "passed": 2
     },
     "vertical": {
+      "total": 1,
+      "passed": 1
+    },
+    "topology": {
+      "total": 18,
+      "passed": 18
+    },
+    "edge-ordering": {
       "total": 1,
       "passed": 1
     },
@@ -1018,10 +1058,6 @@
     "offset": {
       "total": 11,
       "passed": 11
-    },
-    "topology": {
-      "total": 17,
-      "passed": 17
     },
     "continuity": {
       "total": 9,
