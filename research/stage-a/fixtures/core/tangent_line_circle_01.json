@@ -1,0 +1,45 @@
+{
+  "name": "tangent_line_circle_01",
+  "type": "constraint",
+  "inputs": {
+    "entities": {
+      "circle": {
+        "id": "c0",
+        "cx": 0.0,
+        "cy": 0.0,
+        "r": 5.0
+      },
+      "line": {
+        "id": "l0",
+        "x1": -10.0,
+        "y1": 5.0,
+        "x2": 10.0,
+        "y2": 5.0
+      }
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "kind": "tangent",
+        "line": "l0",
+        "circle": "c0"
+      }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "line_circle_distance",
+        "line": "l0",
+        "circle": "c0",
+        "value": 5.0,
+        "eps": 1e-07
+      }
+    ]
+  },
+  "tags": [
+    "constraint",
+    "tangent"
+  ]
+}
