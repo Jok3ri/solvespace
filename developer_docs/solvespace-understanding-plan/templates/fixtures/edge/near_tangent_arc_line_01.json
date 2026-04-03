@@ -1,0 +1,1 @@
+{"name":"near_tangent_arc_line_01","type":"intersection","inputs":{"entities":[]},"expected":{"status":"ok","checks":["no_false_double_intersection"]}}

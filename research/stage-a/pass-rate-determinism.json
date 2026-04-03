@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2026-04-03T12:42:37.324Z",
+  "total": 3,
+  "passed": 3,
+  "failed": 0,
+  "checks": [
+    {
+      "fixture": "offset_chain_concave_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_convex_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "tiny_radius_fillet_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 30
+    }
+  ]
+}
