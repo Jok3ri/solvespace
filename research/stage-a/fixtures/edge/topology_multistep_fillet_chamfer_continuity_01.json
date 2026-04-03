@@ -1,0 +1,25 @@
+{
+  "name": "topology_multistep_fillet_chamfer_continuity_01",
+  "type": "topology_chain",
+  "inputs": {
+    "entities": {
+      "segments": [
+        { "x1": -2.0, "y1": 1.0, "x2": 1.0, "y2": 1.0 },
+        { "x1": 1.0, "y1": 1.0, "x2": 2.5, "y2": 2.5 },
+        { "x1": 2.5, "y1": 2.5, "x2": 2.5, "y2": 6.0 },
+        { "x1": 2.5, "y1": 6.0, "x2": 6.0, "y2": 6.0 }
+      ]
+    },
+    "operation": {
+      "kind": "topology_chain"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "topology_chain_continuity", "continuous": true, "maxGap": 1e-09, "minLength": 1.0, "eps": 1e-09 },
+      { "kind": "deterministic_outcome", "repeats": 30 }
+    ]
+  },
+  "tags": ["edit-op", "topology", "continuity", "chain", "multi_step"]
+}

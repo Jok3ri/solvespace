@@ -1,0 +1,38 @@
+{
+  "generatedAt": "2026-04-03T14:59:21.694Z",
+  "total": 5,
+  "passed": 5,
+  "failed": 0,
+  "checks": [
+    {
+      "fixture": "offset_chain_concave_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_convex_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "tiny_radius_fillet_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_fillet_chamfer_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_trim_extend_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 30
+    }
+  ]
+}
