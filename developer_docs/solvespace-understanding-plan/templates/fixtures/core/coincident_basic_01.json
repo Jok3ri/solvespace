@@ -1,0 +1,1 @@
+{"name":"coincident_basic_01","type":"constraint","inputs":{"entities":[],"constraints":[]},"expected":{"status":"ok","checks":["p1==p2"]}}

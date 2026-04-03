@@ -1,0 +1,33 @@
+{
+  "name": "topology_extend_continuity_01",
+  "type": "edit_op_topology",
+  "inputs": {
+    "entities": {
+      "line": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 7.0,
+        "y2": 0.0
+      },
+      "boundary": {
+        "x1": 12.0,
+        "y1": -5.0,
+        "x2": 12.0,
+        "y2": 5.0
+      }
+    },
+    "operation": {
+      "kind": "extend",
+      "target": "line",
+      "direction": "positive_x"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "extend_line_end", "x2": 12.0, "y2": 0.0, "eps": 1e-07 },
+      { "kind": "extend_nonzero_length", "minLength": 1e-06 }
+    ]
+  },
+  "tags": ["edit-op", "extend", "topology", "continuity"]
+}
