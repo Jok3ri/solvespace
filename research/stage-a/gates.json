@@ -1,0 +1,9 @@
+{
+  "core_rate_min": 1.0,
+  "edge_rate_min": 0.95,
+  "tag_rate_min": {
+    "constraint": 1.0,
+    "intersection": 1.0,
+    "edit-op": 0.95
+  }
+}
