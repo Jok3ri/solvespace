@@ -1,0 +1,42 @@
+{
+  "name": "extend_basic_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "line": {
+        "id": "l0",
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 4.0,
+        "y2": 0.0
+      },
+      "boundary": {
+        "id": "v0",
+        "x1": 10.0,
+        "y1": -5.0,
+        "x2": 10.0,
+        "y2": 5.0
+      }
+    },
+    "operation": {
+      "kind": "extend",
+      "target": "l0",
+      "direction": "positive_x"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "extend_line_end",
+        "x2": 10.0,
+        "y2": 0.0,
+        "eps": 1e-07
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "extend"
+  ]
+}

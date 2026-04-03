@@ -1,0 +1,23 @@
+{
+  "name": "chamfer_oblique_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "lineA": { "x1": 0.0, "y1": 0.0, "x2": 10.0, "y2": 10.0 },
+      "lineB": { "x1": 10.0, "y1": 10.0, "x2": 20.0, "y2": 10.0 }
+    },
+    "operation": { "kind": "chamfer", "distanceA": 1.0, "distanceB": 1.0 }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "chamfer_points",
+        "pA": { "x": 9.2928932188, "y": 9.2928932188 },
+        "pB": { "x": 11.0, "y": 10.0 },
+        "eps": 1e-6
+      }
+    ]
+  },
+  "tags": ["edit-op", "chamfer"]
+}
