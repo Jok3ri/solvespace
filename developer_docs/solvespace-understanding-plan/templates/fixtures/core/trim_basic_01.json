@@ -1,0 +1,1 @@
+{"name":"trim_basic_01","type":"edit_op","inputs":{"entities":[],"operation":"trim"},"expected":{"status":"ok","checks":["segment_count=2"]}}
