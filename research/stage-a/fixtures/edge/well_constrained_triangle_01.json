@@ -1,0 +1,25 @@
+{
+  "name": "well_constrained_triangle_01",
+  "type": "constraint-classification",
+  "inputs": {
+    "entities": {
+      "points": [
+        { "id": "p1", "x": 0.0, "y": 0.0 },
+        { "id": "p2", "x": 6.0, "y": 0.0 },
+        { "id": "p3", "x": 2.0, "y": 4.0 }
+      ]
+    },
+    "constraints": [
+      { "id": "c1", "kind": "distance", "a": "p1", "b": "p2", "value": 6.0 },
+      { "id": "c2", "kind": "distance", "a": "p2", "b": "p3", "value": 5.6568542495 },
+      { "id": "c3", "kind": "distance", "a": "p1", "b": "p3", "value": 4.4721359550 }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "solver_classification", "value": "well_constrained" }
+    ]
+  },
+  "tags": ["constraint", "classification", "well_constrained", "triangle", "multi_entity"]
+}
