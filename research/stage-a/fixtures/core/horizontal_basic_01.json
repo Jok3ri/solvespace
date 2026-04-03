@@ -1,0 +1,43 @@
+{
+  "name": "horizontal_basic_01",
+  "type": "constraint",
+  "inputs": {
+    "entities": {
+      "points": [
+        {
+          "id": "p1",
+          "x": 2.0,
+          "y": 3.0
+        },
+        {
+          "id": "p2",
+          "x": 9.0,
+          "y": 3.0
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "kind": "horizontal",
+        "a": "p1",
+        "b": "p2"
+      }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "equal_y",
+        "a": "p1",
+        "b": "p2",
+        "eps": 1e-07
+      }
+    ]
+  },
+  "tags": [
+    "constraint",
+    "horizontal"
+  ]
+}

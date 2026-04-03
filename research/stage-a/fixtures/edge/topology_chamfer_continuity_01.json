@@ -1,0 +1,32 @@
+{
+  "name": "topology_chamfer_continuity_01",
+  "type": "edit_op_topology",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "lineB": {
+        "x1": 10.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 10.0
+      }
+    },
+    "operation": {
+      "kind": "chamfer",
+      "distanceA": 2.0,
+      "distanceB": 2.0
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "chamfer_non_degenerate", "minLength": 1e-06 }
+    ]
+  },
+  "tags": ["edit-op", "chamfer", "topology", "continuity"]
+}

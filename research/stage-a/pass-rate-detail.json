@@ -1,0 +1,859 @@
+{
+  "generatedAt": "2026-04-03T14:26:01.678Z",
+  "core": [
+    {
+      "name": "chamfer_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "chamfer"
+      ],
+      "checkResults": [
+        {
+          "kind": "chamfer_points",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "coincident_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "coincident",
+        "constraint"
+      ],
+      "checkResults": [
+        {
+          "kind": "point_equal",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "distance_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "distance"
+      ],
+      "checkResults": [
+        {
+          "kind": "distance",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "extend_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "extend"
+      ],
+      "checkResults": [
+        {
+          "kind": "extend_line_end",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "extend_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "extend"
+      ],
+      "checkResults": [
+        {
+          "kind": "extend_line_end",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "fillet_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet"
+      ],
+      "checkResults": [
+        {
+          "kind": "fillet_geometry",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "fillet_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet"
+      ],
+      "checkResults": [
+        {
+          "kind": "fillet_geometry",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "horizontal_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "horizontal"
+      ],
+      "checkResults": [
+        {
+          "kind": "equal_y",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "tangent_line_circle_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "tangent"
+      ],
+      "checkResults": [
+        {
+          "kind": "line_circle_distance",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "trim_basic_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "trim"
+      ],
+      "checkResults": [
+        {
+          "kind": "line_exists",
+          "passed": true
+        },
+        {
+          "kind": "line_removed",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "vertical_basic_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "vertical"
+      ],
+      "checkResults": [
+        {
+          "kind": "equal_x",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "edge": [
+    {
+      "name": "almost_coincident_points_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "coincident",
+        "constraint"
+      ],
+      "checkResults": [
+        {
+          "kind": "point_equal",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "chamfer_small_angle_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "chamfer"
+      ],
+      "checkResults": [
+        {
+          "kind": "chamfer_points",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "near_parallel_lines_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "intersection",
+        "parallel"
+      ],
+      "checkResults": [
+        {
+          "kind": "classified_as_parallel",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "near_singular_distance_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "distance",
+        "near-singular"
+      ],
+      "checkResults": [
+        {
+          "kind": "distance",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "near_tangent_arc_line_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "intersection",
+        "tangent"
+      ],
+      "checkResults": [
+        {
+          "kind": "intersection_count",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_chain_concave_continuity_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "continuity",
+        "chain"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_chain_continuity",
+          "passed": true
+        },
+        {
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 40
+        }
+      ]
+    },
+    {
+      "name": "offset_chain_convex_continuity_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "continuity",
+        "chain"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_chain_continuity",
+          "passed": true
+        },
+        {
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 40
+        }
+      ]
+    },
+    {
+      "name": "offset_corner_directionality_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "corner"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_corner_exists",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_corner_oblique_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "corner"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_corner_exists",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_corner_supported_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "corner"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_corner_exists",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_corner_unsupported_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "diagnostic"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_unsupported",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_self_intersection_detect_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "diagnostic",
+        "self_intersection"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_self_intersection_detected",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_self_intersection_unsupported_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology",
+        "diagnostic",
+        "self_intersection"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_unsupported",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_simple_horizontal_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "offset",
+        "topology"
+      ],
+      "checkResults": [
+        {
+          "kind": "offset_line_exists",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "over_constrained_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "over_constrained_consistent_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "redundant"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "over_constrained_mixed_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "mixed"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "over_constrained_multipair_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "multi_pair"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "tiny_radius_fillet_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet"
+      ],
+      "checkResults": [
+        {
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 30
+        }
+      ]
+    },
+    {
+      "name": "topology_chamfer_continuity_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "chamfer",
+        "topology",
+        "continuity"
+      ],
+      "checkResults": [
+        {
+          "kind": "chamfer_non_degenerate",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "topology_extend_continuity_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "extend",
+        "topology",
+        "continuity"
+      ],
+      "checkResults": [
+        {
+          "kind": "extend_line_end",
+          "passed": true
+        },
+        {
+          "kind": "extend_nonzero_length",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "topology_fillet_continuity_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "edit-op",
+        "fillet",
+        "topology",
+        "continuity"
+      ],
+      "checkResults": [
+        {
+          "kind": "fillet_non_degenerate",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "topology_multistep_fillet_chamfer_continuity_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "topology",
+        "continuity",
+        "chain",
+        "multi_step"
+      ],
+      "checkResults": [
+        {
+          "kind": "topology_chain_continuity",
+          "passed": true
+        },
+        {
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 30
+        }
+      ]
+    },
+    {
+      "name": "topology_multistep_trim_extend_continuity_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "topology",
+        "continuity",
+        "chain",
+        "multi_step"
+      ],
+      "checkResults": [
+        {
+          "kind": "topology_chain_continuity",
+          "passed": true
+        },
+        {
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 30
+        }
+      ]
+    },
+    {
+      "name": "topology_trim_continuity_01",
+      "passed": true,
+      "total": 3,
+      "passedChecks": 3,
+      "tags": [
+        "edit-op",
+        "trim",
+        "topology",
+        "continuity"
+      ],
+      "checkResults": [
+        {
+          "kind": "line_exists",
+          "passed": true
+        },
+        {
+          "kind": "segment_endpoint_match",
+          "passed": true
+        },
+        {
+          "kind": "segment_nonzero_length",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "under_constrained_line_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "under_constrained"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "under_constrained_triangle_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "under_constrained",
+        "triangle"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "well_constrained_pair_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "well_constrained"
+      ],
+      "checkResults": [
+        {
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "tags": {
+    "edit-op": {
+      "total": 23,
+      "passed": 23
+    },
+    "chamfer": {
+      "total": 3,
+      "passed": 3
+    },
+    "coincident": {
+      "total": 2,
+      "passed": 2
+    },
+    "constraint": {
+      "total": 14,
+      "passed": 14
+    },
+    "distance": {
+      "total": 2,
+      "passed": 2
+    },
+    "extend": {
+      "total": 3,
+      "passed": 3
+    },
+    "fillet": {
+      "total": 4,
+      "passed": 4
+    },
+    "horizontal": {
+      "total": 1,
+      "passed": 1
+    },
+    "tangent": {
+      "total": 2,
+      "passed": 2
+    },
+    "trim": {
+      "total": 2,
+      "passed": 2
+    },
+    "vertical": {
+      "total": 1,
+      "passed": 1
+    },
+    "intersection": {
+      "total": 2,
+      "passed": 2
+    },
+    "parallel": {
+      "total": 1,
+      "passed": 1
+    },
+    "near-singular": {
+      "total": 1,
+      "passed": 1
+    },
+    "offset": {
+      "total": 9,
+      "passed": 9
+    },
+    "topology": {
+      "total": 15,
+      "passed": 15
+    },
+    "continuity": {
+      "total": 8,
+      "passed": 8
+    },
+    "chain": {
+      "total": 4,
+      "passed": 4
+    },
+    "corner": {
+      "total": 3,
+      "passed": 3
+    },
+    "diagnostic": {
+      "total": 3,
+      "passed": 3
+    },
+    "self_intersection": {
+      "total": 2,
+      "passed": 2
+    },
+    "classification": {
+      "total": 7,
+      "passed": 7
+    },
+    "over_constrained": {
+      "total": 4,
+      "passed": 4
+    },
+    "conflict": {
+      "total": 3,
+      "passed": 3
+    },
+    "redundant": {
+      "total": 1,
+      "passed": 1
+    },
+    "mixed": {
+      "total": 1,
+      "passed": 1
+    },
+    "multi_pair": {
+      "total": 1,
+      "passed": 1
+    },
+    "multi_step": {
+      "total": 2,
+      "passed": 2
+    },
+    "under_constrained": {
+      "total": 2,
+      "passed": 2
+    },
+    "triangle": {
+      "total": 1,
+      "passed": 1
+    },
+    "well_constrained": {
+      "total": 1,
+      "passed": 1
+    }
+  },
+  "gates": {
+    "core_rate_min": 1,
+    "edge_rate_min": 0.95,
+    "tag_rate_min": {
+      "constraint": 1,
+      "intersection": 1,
+      "edit-op": 0.95
+    }
+  },
+  "gateResult": {
+    "core_ok": true,
+    "edge_ok": true,
+    "tag_failures": [],
+    "ok": true
+  }
+}
