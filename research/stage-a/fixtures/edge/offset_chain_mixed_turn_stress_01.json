@@ -1,0 +1,30 @@
+{
+  "name": "offset_chain_mixed_turn_stress_01",
+  "type": "edit_op_offset",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 6.0, "y": 0.0 },
+        { "x": 6.0, "y": 4.0 },
+        { "x": 2.0, "y": 4.0 },
+        { "x": 2.0, "y": 8.0 },
+        { "x": 8.0, "y": 8.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "chain_continuity",
+      "distance": 1.5,
+      "cornerPolicy": "miter"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "offset_chain_continuity", "cornerCount": 4, "convexCount": 2, "concaveCount": 2 },
+      { "kind": "deterministic_outcome", "repeats": 50 }
+    ]
+  },
+  "tags": ["edit-op", "offset", "topology", "continuity", "chain", "stress", "mixed"]
+}

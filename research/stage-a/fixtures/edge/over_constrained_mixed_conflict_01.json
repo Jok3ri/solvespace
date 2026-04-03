@@ -1,0 +1,24 @@
+{
+  "name": "over_constrained_mixed_conflict_01",
+  "type": "constraint-classification",
+  "inputs": {
+    "entities": {
+      "points": [
+        { "id": "p1", "x": 0.0, "y": 0.0 },
+        { "id": "p2", "x": 5.0, "y": 3.0 }
+      ]
+    },
+    "constraints": [
+      { "id": "c1", "kind": "horizontal", "a": "p1", "b": "p2" },
+      { "id": "c2", "kind": "vertical", "a": "p1", "b": "p2" },
+      { "id": "c3", "kind": "distance", "a": "p1", "b": "p2", "value": 5.0 }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "solver_classification", "value": "over_constrained_conflicting" }
+    ]
+  },
+  "tags": ["constraint", "classification", "over_constrained", "conflict", "mixed"]
+}
