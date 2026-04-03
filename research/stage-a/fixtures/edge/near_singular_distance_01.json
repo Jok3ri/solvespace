@@ -1,0 +1,46 @@
+{
+  "name": "near_singular_distance_01",
+  "type": "constraint",
+  "inputs": {
+    "entities": {
+      "points": [
+        {
+          "id": "p1",
+          "x": 1000000.0,
+          "y": 1000000.0
+        },
+        {
+          "id": "p2",
+          "x": 1000000.000001,
+          "y": 1000000.000001
+        }
+      ]
+    },
+    "constraints": [
+      {
+        "id": "c1",
+        "kind": "distance",
+        "a": "p1",
+        "b": "p2",
+        "value": 1.4142135624e-06
+      }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "distance",
+        "a": "p1",
+        "b": "p2",
+        "value": 1.4142135624e-06,
+        "eps": 1e-09
+      }
+    ]
+  },
+  "tags": [
+    "constraint",
+    "distance",
+    "near-singular"
+  ]
+}
