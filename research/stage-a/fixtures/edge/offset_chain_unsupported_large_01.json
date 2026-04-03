@@ -1,0 +1,31 @@
+{
+  "name": "offset_chain_unsupported_large_01",
+  "type": "edit_op_offset",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 4.0, "y": 0.0 },
+        { "x": 4.0, "y": 3.0 },
+        { "x": 1.0, "y": 3.0 },
+        { "x": 1.0, "y": 6.0 },
+        { "x": 6.0, "y": 6.0 },
+        { "x": 6.0, "y": 9.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "chain_continuity",
+      "distance": 1.0,
+      "cornerPolicy": "miter",
+      "maxVerticesSupported": 6
+    }
+  },
+  "expected": {
+    "status": "diagnostic",
+    "checks": [
+      { "kind": "offset_diagnostic_reason", "reason": "unsupported_chain_complexity" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "topology", "diagnostic", "stress", "unsupported"]
+}
