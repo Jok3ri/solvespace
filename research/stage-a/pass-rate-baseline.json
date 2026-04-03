@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-04-03T18:19:54.827Z",
+  "core": {
+    "passed": 11,
+    "total": 11,
+    "rate": 1
+  },
+  "edge": {
+    "passed": 35,
+    "total": 35,
+    "rate": 1
+  },
+  "gates": {
+    "core_rate_min": 1,
+    "edge_rate_min": 0.95,
+    "tag_rate_min": {
+      "constraint": 1,
+      "intersection": 1,
+      "edit-op": 0.95
+    }
+  },
+  "gateResult": {
+    "core_ok": true,
+    "edge_ok": true,
+    "tag_failures": [],
+    "ok": true
+  }
+}

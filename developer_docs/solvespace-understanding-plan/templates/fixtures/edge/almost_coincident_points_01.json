@@ -1,0 +1,1 @@
+{"name":"almost_coincident_points_01","type":"constraint","inputs":{"entities":[]},"expected":{"status":"ok","checks":["consistent_merge_or_separate_policy"]}}
