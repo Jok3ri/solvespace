@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-04-03T17:46:41.134Z",
+  "total": 6,
+  "passed": 6,
+  "failed": 0,
+  "checks": [
+    {
+      "fixture": "offset_chain_concave_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_concave_continuity_01",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_convex_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_convex_continuity_01",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_mixed_turn_stress_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_mixed_turn_stress_01",
+      "passed": true,
+      "repeats": 50
+    },
+    {
+      "fixture": "tiny_radius_fillet_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_tiny_radius_fillet_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_fillet_chamfer_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_multistep_fillet_chamfer_continuity_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_trim_extend_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_multistep_trim_extend_continuity_01",
+      "passed": true,
+      "repeats": 30
+    }
+  ]
+}
