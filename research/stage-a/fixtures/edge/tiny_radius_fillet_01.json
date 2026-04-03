@@ -1,0 +1,37 @@
+{
+  "name": "tiny_radius_fillet_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "lineB": {
+        "x1": 10.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 10.0
+      }
+    },
+    "operation": {
+      "kind": "fillet",
+      "radius": 1e-05
+    }
+  },
+  "expected": {
+    "status": "ok_or_diagnostic",
+    "checks": [
+      {
+        "kind": "deterministic_outcome",
+        "id": "det_tiny_radius_fillet_01"
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "fillet"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "extend_oblique_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "line": { "id": "l0", "x1": 0.0, "y1": 0.0, "x2": 5.0, "y2": 5.0 },
+      "boundary": { "id": "b0", "x1": 8.0, "y1": 0.0, "x2": 8.0, "y2": 10.0 }
+    },
+    "operation": { "kind": "extend", "target": "l0", "direction": "forward" }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "extend_line_end", "x2": 8.0, "y2": 8.0, "eps": 1e-6 }
+    ]
+  },
+  "tags": ["edit-op", "extend"]
+}
