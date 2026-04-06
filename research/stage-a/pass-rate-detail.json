@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T09:46:45.055Z",
+  "generatedAt": "2026-04-02T13:50:29.985Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -189,6 +189,32 @@
       ]
     },
     {
+      "name": "over_constrained_mixed_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "mixed"
+      ]
+    },
+    {
+      "name": "over_constrained_multipair_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "multi_pair"
+      ]
+    },
+    {
       "name": "tiny_radius_fillet_01",
       "passed": true,
       "total": 1,
@@ -247,8 +273,8 @@
       "passed": 2
     },
     "constraint": {
-      "total": 12,
-      "passed": 12
+      "total": 14,
+      "passed": 14
     },
     "distance": {
       "total": 2,
@@ -291,18 +317,26 @@
       "passed": 1
     },
     "classification": {
-      "total": 5,
-      "passed": 5
+      "total": 7,
+      "passed": 7
     },
     "over_constrained": {
-      "total": 2,
-      "passed": 2
+      "total": 4,
+      "passed": 4
     },
     "conflict": {
+      "total": 3,
+      "passed": 3
+    },
+    "redundant": {
       "total": 1,
       "passed": 1
     },
-    "redundant": {
+    "mixed": {
+      "total": 1,
+      "passed": 1
+    },
+    "multi_pair": {
       "total": 1,
       "passed": 1
     },

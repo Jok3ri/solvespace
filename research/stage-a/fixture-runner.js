@@ -54,9 +54,11 @@ function lineCircleIntersectionCount(line, arc) {
   const B = 2 * (fx * dx + fy * dy);
   const C = fx * fx + fy * fy - arc.r * arc.r;
   const D = B * B - 4 * A * C;
-  if (D < 0) return 0;
+  const discEps = 1e-12;
+  if (D < -discEps) return 0;
+  const Dn = Math.abs(D) <= discEps ? 0 : D;
 
-  const ts = D === 0 ? [-B / (2 * A)] : [(-B - Math.sqrt(D)) / (2 * A), (-B + Math.sqrt(D)) / (2 * A)];
+  const ts = Dn === 0 ? [-B / (2 * A)] : [(-B - Math.sqrt(Dn)) / (2 * A), (-B + Math.sqrt(Dn)) / (2 * A)];
   let count = 0;
   for (const t of ts) {
     if (t < -1e-12 || t > 1 + 1e-12) continue; // segment-only intersection
@@ -207,11 +209,18 @@ function classifyConstraintScenario(inputs) {
   const points = (inputs.entities && inputs.entities.points) || [];
 
   const distancesByPair = new Map();
+  const horizontalByPair = new Set();
+  const verticalByPair = new Set();
   for (const c of constraints) {
-    if (c.kind !== 'distance') continue;
     const key = pairKey(c.a, c.b);
-    if (!distancesByPair.has(key)) distancesByPair.set(key, []);
-    distancesByPair.get(key).push(c.value);
+    if (c.kind === 'distance') {
+      if (!distancesByPair.has(key)) distancesByPair.set(key, []);
+      distancesByPair.get(key).push(c.value);
+    } else if (c.kind === 'horizontal') {
+      horizontalByPair.add(key);
+    } else if (c.kind === 'vertical') {
+      verticalByPair.add(key);
+    }
   }
 
   let hasConsistentDuplicate = false;
@@ -222,6 +231,13 @@ function classifyConstraintScenario(inputs) {
     if (hasConflict) return 'over_constrained_conflicting';
     hasConsistentDuplicate = true;
   }
+  for (const [key, values] of distancesByPair.entries()) {
+    const hasNonZeroDistance = values.some(v => Math.abs(v) > 1e-9);
+    if (hasNonZeroDistance && horizontalByPair.has(key) && verticalByPair.has(key)) {
+      return 'over_constrained_conflicting';
+    }
+  }
+
   if (hasConsistentDuplicate) {
     return 'over_constrained_consistent';
   }
