@@ -985,7 +985,7 @@ void Group::MakeLatheSurfacesSelectable(EntityList *el, hEntity in, Vector axis)
             en.style = ep->style;
             en.h = Remap(ep->h, REMAP_LINE_TO_FACE);
             en.type = Entity::Type::FACE_NORMAL_PT;
-            en.point[0] = ep->point[0];
+            en.point[0] = Remap(ep->point[0], REMAP_LATHE_START);
             el->Add(&en);
         }
     }
@@ -1186,8 +1186,10 @@ void Group::CopyEntity(EntityList *el,
             }
             en.numPoint  = (ep->actPoint).ScaledBy(scale);
             en.numNormal = (ep->actNormal).ScaledBy(scale);
-            // the new face needs an associated point
-            en.point[0] = Remap(ep->point[0], remap);
+            // the new face needs an associated point (old files may not have one)
+            if(ep->point[0].v != 0) {
+                en.point[0] = Remap(ep->point[0], remap);
+            }
             break;
 
         default: {
