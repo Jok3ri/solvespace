@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T09:19:39.398Z",
+  "generatedAt": "2026-04-02T13:50:29.985Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -165,42 +165,6 @@
       ]
     },
     {
-      "name": "offset_corner_unsupported_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "edit-op",
-        "offset",
-        "topology",
-        "diagnostic"
-      ]
-    },
-    {
-      "name": "offset_self_intersection_unsupported_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "edit-op",
-        "offset",
-        "topology",
-        "diagnostic",
-        "self_intersection"
-      ]
-    },
-    {
-      "name": "offset_simple_horizontal_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "edit-op",
-        "offset",
-        "topology"
-      ]
-    },
-    {
       "name": "over_constrained_conflict_01",
       "passed": true,
       "total": 1,
@@ -261,54 +225,6 @@
       ]
     },
     {
-      "name": "topology_chamfer_continuity_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "edit-op",
-        "chamfer",
-        "topology",
-        "continuity"
-      ]
-    },
-    {
-      "name": "topology_extend_continuity_01",
-      "passed": true,
-      "total": 2,
-      "passedChecks": 2,
-      "tags": [
-        "edit-op",
-        "extend",
-        "topology",
-        "continuity"
-      ]
-    },
-    {
-      "name": "topology_fillet_continuity_01",
-      "passed": true,
-      "total": 1,
-      "passedChecks": 1,
-      "tags": [
-        "edit-op",
-        "fillet",
-        "topology",
-        "continuity"
-      ]
-    },
-    {
-      "name": "topology_trim_continuity_01",
-      "passed": true,
-      "total": 3,
-      "passedChecks": 3,
-      "tags": [
-        "edit-op",
-        "trim",
-        "topology",
-        "continuity"
-      ]
-    },
-    {
       "name": "under_constrained_line_01",
       "passed": true,
       "total": 1,
@@ -345,12 +261,12 @@
   ],
   "tags": {
     "edit-op": {
-      "total": 15,
-      "passed": 15
+      "total": 8,
+      "passed": 8
     },
     "chamfer": {
-      "total": 3,
-      "passed": 3
+      "total": 2,
+      "passed": 2
     },
     "coincident": {
       "total": 2,
@@ -365,12 +281,12 @@
       "passed": 2
     },
     "extend": {
-      "total": 3,
-      "passed": 3
+      "total": 2,
+      "passed": 2
     },
     "fillet": {
-      "total": 4,
-      "passed": 4
+      "total": 3,
+      "passed": 3
     },
     "horizontal": {
       "total": 1,
@@ -381,8 +297,8 @@
       "passed": 2
     },
     "trim": {
-      "total": 2,
-      "passed": 2
+      "total": 1,
+      "passed": 1
     },
     "vertical": {
       "total": 1,
@@ -397,22 +313,6 @@
       "passed": 1
     },
     "near-singular": {
-      "total": 1,
-      "passed": 1
-    },
-    "offset": {
-      "total": 3,
-      "passed": 3
-    },
-    "topology": {
-      "total": 7,
-      "passed": 7
-    },
-    "diagnostic": {
-      "total": 2,
-      "passed": 2
-    },
-    "self_intersection": {
       "total": 1,
       "passed": 1
     },
@@ -439,10 +339,6 @@
     "multi_pair": {
       "total": 1,
       "passed": 1
-    },
-    "continuity": {
-      "total": 4,
-      "passed": 4
     },
     "under_constrained": {
       "total": 2,
