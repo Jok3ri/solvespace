@@ -1,0 +1,1 @@
+{"name":"near_parallel_lines_01","type":"intersection","inputs":{"entities":[]},"expected":{"status":"ok","checks":["stable_result_with_eps"]}}

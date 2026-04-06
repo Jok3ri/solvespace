@@ -1,0 +1,55 @@
+{
+  "name": "topology_multistep_trim_extend_continuity_01",
+  "type": "topology_chain",
+  "inputs": {
+    "entities": {
+      "segments": [
+        {
+          "x1": 0.0,
+          "y1": 0.0,
+          "x2": 3.0,
+          "y2": 0.0
+        },
+        {
+          "x1": 3.0,
+          "y1": 0.0,
+          "x2": 3.0,
+          "y2": 4.0
+        },
+        {
+          "x1": 3.0,
+          "y1": 4.0,
+          "x2": 7.0,
+          "y2": 4.0
+        }
+      ]
+    },
+    "operation": {
+      "kind": "topology_chain"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "topology_chain_continuity",
+        "continuous": true,
+        "maxGap": 1e-09,
+        "minLength": 1.0,
+        "eps": 1e-09
+      },
+      {
+        "kind": "deterministic_outcome",
+        "repeats": 30,
+        "id": "det_topology_multistep_trim_extend_continuity_01"
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "topology",
+    "continuity",
+    "chain",
+    "multi_step"
+  ]
+}

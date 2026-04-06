@@ -1,0 +1,71 @@
+{
+  "name": "topology_closed_loop_oblique_continuity_01",
+  "type": "topology_chain",
+  "inputs": {
+    "entities": {
+      "segments": [
+        {
+          "x1": -1.0,
+          "y1": 0.0,
+          "x2": 2.0,
+          "y2": 1.0
+        },
+        {
+          "x1": 2.0,
+          "y1": 1.0,
+          "x2": 3.5,
+          "y2": 4.0
+        },
+        {
+          "x1": 3.5,
+          "y1": 4.0,
+          "x2": 0.5,
+          "y2": 5.0
+        },
+        {
+          "x1": 0.5,
+          "y1": 5.0,
+          "x2": -2.0,
+          "y2": 3.0
+        },
+        {
+          "x1": -2.0,
+          "y1": 3.0,
+          "x2": -1.0,
+          "y2": 0.0
+        }
+      ]
+    },
+    "operation": {
+      "kind": "topology_chain"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "topology_chain_continuity",
+        "continuous": true,
+        "requireClosed": true,
+        "segmentCount": 5,
+        "maxGap": 1e-09,
+        "maxClosureGap": 1e-09,
+        "minLength": 2.0,
+        "eps": 1e-09
+      },
+      {
+        "kind": "deterministic_outcome",
+        "repeats": 30,
+        "id": "det_topology_closed_loop_oblique_continuity_01"
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "topology",
+    "continuity",
+    "chain",
+    "closed_loop",
+    "oblique"
+  ]
+}
