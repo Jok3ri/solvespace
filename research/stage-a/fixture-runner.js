@@ -200,100 +200,6 @@ function simulateFillet(inputs) {
   return { pA, pB, center, radius: r };
 }
 
-function simulateOffset(inputs) {
-  const ent = inputs.entities || {};
-  const op = inputs.operation || {};
-  if (Array.isArray(ent.polyline) && op.mode === 'detect_self_intersection') {
-    return {
-      type: 'diagnostic',
-      reason: 'self_intersection',
-      vertexCount: ent.polyline.length
-    };
-  }
-  if (ent.lineA && ent.lineB && op.mode === 'corner' && typeof op.distance === 'number') {
-    const a = ent.lineA;
-    const b = ent.lineB;
-    if (op.sideA && op.sideB) {
-      const d = op.distance;
-      const aDx = a.x2 - a.x1;
-      const aDy = a.y2 - a.y1;
-      const bDx = b.x2 - b.x1;
-      const bDy = b.y2 - b.y1;
-      const aLen = Math.hypot(aDx, aDy);
-      const bLen = Math.hypot(bDx, bDy);
-      if (aLen <= 1e-12 || bLen <= 1e-12) return null;
-
-      const cross = aDx * bDy - aDy * bDx;
-      if (Math.abs(cross) <= 1e-12) return null;
-
-      const aNx = (op.sideA === 'right' ? aDy : -aDy) / aLen;
-      const aNy = (op.sideA === 'right' ? -aDx : aDx) / aLen;
-      const bNx = (op.sideB === 'right' ? bDy : -bDy) / bLen;
-      const bNy = (op.sideB === 'right' ? -bDx : bDx) / bLen;
-
-      const oa1 = { x: a.x1 + aNx * d, y: a.y1 + aNy * d };
-      const oa2 = { x: a.x2 + aNx * d, y: a.y2 + aNy * d };
-      const ob1 = { x: b.x1 + bNx * d, y: b.y1 + bNy * d };
-      const ob2 = { x: b.x2 + bNx * d, y: b.y2 + bNy * d };
-      const corner = lineIntersection(
-        { x1: oa1.x, y1: oa1.y, x2: oa2.x, y2: oa2.y },
-        { x1: ob1.x, y1: ob1.y, x2: ob2.x, y2: ob2.y }
-      );
-      if (!corner) return null;
-
-      return {
-        type: 'corner',
-        corner,
-        segmentA: { x1: oa1.x, y1: oa1.y, x2: corner.x, y2: corner.y },
-        segmentB: { x1: corner.x, y1: corner.y, x2: ob1.x, y2: ob1.y }
-      };
-    }
-    const aHorizontal = Math.abs(a.y2 - a.y1) <= 1e-12;
-    const bVertical = Math.abs(b.x2 - b.x1) <= 1e-12;
-    if (aHorizontal && bVertical) {
-      const d = op.distance;
-      const cornerX = b.x1 + d;
-      const cornerY = a.y1 + d;
-      return {
-        type: 'corner',
-        corner: { x: cornerX, y: cornerY },
-        segmentA: { x1: a.x1, y1: a.y1 + d, x2: cornerX, y2: cornerY },
-        segmentB: { x1: cornerX, y1: cornerY, x2: b.x1 + d, y2: b.y2 }
-      };
-    }
-    return null;
-  }
-
-  if (!ent.line || typeof op.distance !== 'number') return null;
-  const l = ent.line;
-  const dx = l.x2 - l.x1;
-  const dy = l.y2 - l.y1;
-  if (Math.hypot(dx, dy) < 1e-12) return null;
-
-  // Minimal offset model: axis-aligned segment offsets only.
-  if (Math.abs(dy) <= 1e-12) {
-    const sign = op.side === 'negative_y' ? -1 : 1;
-    return {
-      id: 'offset_line',
-      x1: l.x1,
-      y1: l.y1 + sign * op.distance,
-      x2: l.x2,
-      y2: l.y2 + sign * op.distance
-    };
-  }
-  if (Math.abs(dx) <= 1e-12) {
-    const sign = op.side === 'negative_x' ? -1 : 1;
-    return {
-      id: 'offset_line',
-      x1: l.x1 + sign * op.distance,
-      y1: l.y1,
-      x2: l.x2 + sign * op.distance,
-      y2: l.y2
-    };
-  }
-  return null;
-}
-
 function pairKey(a, b) {
   return [a, b].sort().join('::');
 }
@@ -358,8 +264,6 @@ function simulateOperation(inputs) {
       return simulateChamfer(inputs);
     case 'fillet':
       return simulateFillet(inputs);
-    case 'offset':
-      return simulateOffset(inputs);
     default:
       return null;
   }
@@ -432,31 +336,10 @@ function runCheck(fix, check) {
       const result = simulateTrim(fix.inputs);
       return !result.segments.some(s => s.id === check.id);
     }
-    case 'segment_endpoint_match': {
-      const result = simulateTrim(fix.inputs);
-      const seg = result.segments.find(s => s.id === check.id);
-      if (!seg) return false;
-      const x = check.endpoint === 'start' ? seg.x1 : seg.x2;
-      const y = check.endpoint === 'start' ? seg.y1 : seg.y2;
-      return nearlyEqual(x, check.x, check.eps) && nearlyEqual(y, check.y, check.eps);
-    }
-    case 'segment_nonzero_length': {
-      const result = simulateTrim(fix.inputs);
-      const seg = result.segments.find(s => s.id === check.id);
-      if (!seg) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist({ x: seg.x1, y: seg.y1 }, { x: seg.x2, y: seg.y2 }) > minLength;
-    }
     case 'extend_line_end': {
       const result = simulateExtend(fix.inputs);
       if (!result) return false;
       return nearlyEqual(result.x2, check.x2, check.eps) && nearlyEqual(result.y2, check.y2, check.eps);
-    }
-    case 'extend_nonzero_length': {
-      const result = simulateExtend(fix.inputs);
-      if (!result) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist({ x: result.x1, y: result.y1 }, { x: result.x2, y: result.y2 }) > minLength;
     }
     case 'chamfer_points': {
       const result = simulateChamfer(fix.inputs);
@@ -465,12 +348,6 @@ function runCheck(fix, check) {
         && nearlyEqual(result.pA.y, check.pA.y, check.eps)
         && nearlyEqual(result.pB.x, check.pB.x, check.eps)
         && nearlyEqual(result.pB.y, check.pB.y, check.eps);
-    }
-    case 'chamfer_non_degenerate': {
-      const result = simulateChamfer(fix.inputs);
-      if (!result) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist(result.pA, result.pB) > minLength;
     }
     case 'fillet_geometry': {
       const result = simulateFillet(fix.inputs);
@@ -482,41 +359,6 @@ function runCheck(fix, check) {
         && nearlyEqual(result.center.x, check.center.x, check.eps)
         && nearlyEqual(result.center.y, check.center.y, check.eps)
         && nearlyEqual(result.radius, check.radius, check.eps);
-    }
-    case 'fillet_non_degenerate': {
-      const result = simulateFillet(fix.inputs);
-      if (!result) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return result.radius > 0
-        && Number.isFinite(result.center.x)
-        && Number.isFinite(result.center.y)
-        && dist(result.pA, result.pB) > minLength;
-    }
-    case 'offset_line_exists': {
-      const result = simulateOffset(fix.inputs);
-      if (!result) return false;
-      return nearlyEqual(result.x1, check.x1, check.eps)
-        && nearlyEqual(result.y1, check.y1, check.eps)
-        && nearlyEqual(result.x2, check.x2, check.eps)
-        && nearlyEqual(result.y2, check.y2, check.eps);
-    }
-    case 'offset_unsupported': {
-      const result = simulateOffset(fix.inputs);
-      return result === null || (result && result.type === 'diagnostic');
-    }
-    case 'offset_corner_exists': {
-      const result = simulateOffset(fix.inputs);
-      if (!result || result.type !== 'corner') return false;
-      const eps = check.eps || 1e-7;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      const cornerOk = nearlyEqual(result.corner.x, check.corner.x, eps) && nearlyEqual(result.corner.y, check.corner.y, eps);
-      const segAOk = dist({ x: result.segmentA.x1, y: result.segmentA.y1 }, { x: result.segmentA.x2, y: result.segmentA.y2 }) > minLength;
-      const segBOk = dist({ x: result.segmentB.x1, y: result.segmentB.y1 }, { x: result.segmentB.x2, y: result.segmentB.y2 }) > minLength;
-      return cornerOk && segAOk && segBOk;
-    }
-    case 'offset_self_intersection_detected': {
-      const result = simulateOffset(fix.inputs);
-      return !!result && result.type === 'diagnostic' && result.reason === 'self_intersection';
     }
     default:
       return false;
