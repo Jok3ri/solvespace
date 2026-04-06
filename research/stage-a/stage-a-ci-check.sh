@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-node research/stage-a/fixture-runner.js
-node research/stage-a/compare-pass-rate.js
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+node "${SCRIPT_DIR}/fixture-runner.js"
+node "${SCRIPT_DIR}/compare-pass-rate.js"
 
 echo "Stage A CI-style check passed."

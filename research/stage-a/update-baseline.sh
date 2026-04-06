@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cp research/stage-a/pass-rate-report.json research/stage-a/pass-rate-baseline.json
-cp research/stage-a/pass-rate-detail.json research/stage-a/pass-rate-baseline-detail.json
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cp "${SCRIPT_DIR}/pass-rate-report.json" "${SCRIPT_DIR}/pass-rate-baseline.json"
+cp "${SCRIPT_DIR}/pass-rate-detail.json" "${SCRIPT_DIR}/pass-rate-baseline-detail.json"
 
 echo "Updated Stage A baselines from current reports."
