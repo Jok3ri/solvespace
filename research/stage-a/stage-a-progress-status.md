@@ -15,11 +15,11 @@ Stage A is **in progress**.
 2. Baseline pass-rate artifacts and comparator checks.
 3. Initial capability matrix seed and research backlog.
 4. Determinism repeat protocol and Stage B/C trace template.
-5. First executable under/over-constrained slice implemented (U1/O2/W1 class checks).
+5. Executable under/over-constrained slice expanded (U1/U2/O1/O2/O3/W1 class checks).
 
 ## What remains for Stage A completion
 
-1. Expand under/over-constrained fixture families beyond initial slice.
+1. Continue broadening multi-entity conflict variants and solver-classification edge families.
 2. Add topology invariant checks (connectivity/entity continuity).
 3. Add offset fixture family (simple/corner/self-intersection).
 4. Add deterministic repeat execution outputs into reports.
@@ -37,4 +37,4 @@ Stage A is considered complete when all are true:
 
 ## Next research action (starting now)
 
-Expand solver classification fixtures to cover redundant-consistent and 3-point ambiguity scenarios.
+Add first topology invariant checks for edit-op outputs (entity continuity and endpoint consistency).

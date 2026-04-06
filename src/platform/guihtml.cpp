@@ -230,6 +230,7 @@ public:
         htmlMenu(val::global("document").call<val>("createElement", val("ul")))
     {
         htmlMenu["classList"].call<void>("add", val("menu"));
+        htmlMenu.call<void>("setAttribute", val("oncontextmenu"), val("return false"));
     }
 
     MenuItemRef AddItem(const std::string &label, std::function<void()> onTrigger,
@@ -1061,6 +1062,7 @@ public:
         htmlEditor["style"].set("fontFamily", isMonospace ? "monospace" : "sans");
         htmlEditor.set("value", text);
         htmlEditor.call<void>("focus");
+        htmlEditor.call<void>("select");
     }
 
     void HideEditor() override {

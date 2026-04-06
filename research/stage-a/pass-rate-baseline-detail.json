@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-02T08:25:59.810Z",
+  "generatedAt": "2026-04-02T13:50:29.985Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -177,6 +177,44 @@
       ]
     },
     {
+      "name": "over_constrained_consistent_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "redundant"
+      ]
+    },
+    {
+      "name": "over_constrained_mixed_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "mixed"
+      ]
+    },
+    {
+      "name": "over_constrained_multipair_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "multi_pair"
+      ]
+    },
+    {
       "name": "tiny_radius_fillet_01",
       "passed": true,
       "total": 1,
@@ -195,6 +233,18 @@
         "constraint",
         "classification",
         "under_constrained"
+      ]
+    },
+    {
+      "name": "under_constrained_triangle_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "under_constrained",
+        "triangle"
       ]
     },
     {
@@ -223,8 +273,8 @@
       "passed": 2
     },
     "constraint": {
-      "total": 10,
-      "passed": 10
+      "total": 14,
+      "passed": 14
     },
     "distance": {
       "total": 2,
@@ -267,18 +317,34 @@
       "passed": 1
     },
     "classification": {
+      "total": 7,
+      "passed": 7
+    },
+    "over_constrained": {
+      "total": 4,
+      "passed": 4
+    },
+    "conflict": {
       "total": 3,
       "passed": 3
     },
-    "over_constrained": {
+    "redundant": {
       "total": 1,
       "passed": 1
     },
-    "conflict": {
+    "mixed": {
+      "total": 1,
+      "passed": 1
+    },
+    "multi_pair": {
       "total": 1,
       "passed": 1
     },
     "under_constrained": {
+      "total": 2,
+      "passed": 2
+    },
+    "triangle": {
       "total": 1,
       "passed": 1
     },
