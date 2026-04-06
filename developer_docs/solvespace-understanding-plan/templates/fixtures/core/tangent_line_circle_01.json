@@ -1,0 +1,1 @@
+{"name":"tangent_line_circle_01","type":"constraint","inputs":{"entities":[],"constraints":[]},"expected":{"status":"ok","checks":["dist(center,line)=radius"]}}

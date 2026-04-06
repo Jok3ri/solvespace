@@ -1,0 +1,25 @@
+{
+  "name": "over_constrained_triangle_conflict_01",
+  "type": "constraint-classification",
+  "inputs": {
+    "entities": {
+      "points": [
+        { "id": "p1", "x": 0.0, "y": 0.0 },
+        { "id": "p2", "x": 1.0, "y": 0.0 },
+        { "id": "p3", "x": 2.0, "y": 0.0 }
+      ]
+    },
+    "constraints": [
+      { "id": "c1", "kind": "distance", "a": "p1", "b": "p2", "value": 1.0 },
+      { "id": "c2", "kind": "distance", "a": "p2", "b": "p3", "value": 1.0 },
+      { "id": "c3", "kind": "distance", "a": "p1", "b": "p3", "value": 3.0 }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "solver_classification", "value": "over_constrained_conflicting" }
+    ]
+  },
+  "tags": ["constraint", "classification", "over_constrained", "conflict", "triangle", "multi_entity"]
+}

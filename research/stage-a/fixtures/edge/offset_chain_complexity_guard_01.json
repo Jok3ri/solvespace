@@ -1,0 +1,30 @@
+{
+  "name": "offset_chain_complexity_guard_01",
+  "type": "offset_chain",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 1.0, "y": 0.0 },
+        { "x": 2.0, "y": 0.5 },
+        { "x": 3.0, "y": 0.5 },
+        { "x": 4.0, "y": 1.0 },
+        { "x": 5.0, "y": 1.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "chain_continuity",
+      "maxVerticesSupported": 5
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "offset_diagnostic_reason", "reason": "unsupported_chain_complexity" },
+      { "kind": "offset_diagnostic_limits", "reason": "unsupported_chain_complexity", "vertexCount": 6, "maxVerticesSupported": 5 },
+      { "kind": "deterministic_outcome", "repeats": 40, "id": "det_offset_chain_complexity_guard_01" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "diagnostic", "chain", "complexity_guard"]
+}
