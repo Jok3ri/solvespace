@@ -1,0 +1,1 @@
+{"name":"tiny_radius_fillet_01","type":"edit_op","inputs":{"entities":[],"operation":"fillet"},"expected":{"status":"ok_or_diagnostic","checks":["deterministic_behavior"]}}
