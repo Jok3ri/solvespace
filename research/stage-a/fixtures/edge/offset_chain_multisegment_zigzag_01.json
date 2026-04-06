@@ -1,0 +1,29 @@
+{
+  "name": "offset_chain_multisegment_zigzag_01",
+  "type": "offset_chain",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 2.0, "y": 0.0 },
+        { "x": 2.0, "y": 2.0 },
+        { "x": 4.0, "y": 2.0 },
+        { "x": 4.0, "y": 1.0 },
+        { "x": 6.0, "y": 1.0 },
+        { "x": 6.0, "y": 3.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "chain_continuity"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "offset_chain_continuity", "cornerCount": 5, "convexCount": 3, "concaveCount": 2 },
+      { "kind": "deterministic_outcome", "repeats": 50, "id": "det_offset_chain_multisegment_zigzag_01" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "chain", "continuity", "stress", "multi_segment"]
+}
