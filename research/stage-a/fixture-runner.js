@@ -54,9 +54,11 @@ function lineCircleIntersectionCount(line, arc) {
   const B = 2 * (fx * dx + fy * dy);
   const C = fx * fx + fy * fy - arc.r * arc.r;
   const D = B * B - 4 * A * C;
-  if (D < 0) return 0;
+  const discEps = 1e-12;
+  if (D < -discEps) return 0;
+  const Dn = Math.abs(D) <= discEps ? 0 : D;
 
-  const ts = D === 0 ? [-B / (2 * A)] : [(-B - Math.sqrt(D)) / (2 * A), (-B + Math.sqrt(D)) / (2 * A)];
+  const ts = Dn === 0 ? [-B / (2 * A)] : [(-B - Math.sqrt(Dn)) / (2 * A), (-B + Math.sqrt(Dn)) / (2 * A)];
   let count = 0;
   for (const t of ts) {
     if (t < -1e-12 || t > 1 + 1e-12) continue; // segment-only intersection
@@ -229,15 +231,15 @@ function classifyConstraintScenario(inputs) {
     if (hasConflict) return 'over_constrained_conflicting';
     hasConsistentDuplicate = true;
   }
-  if (hasConsistentDuplicate) {
-    return 'over_constrained_consistent';
-  }
-
   for (const [key, values] of distancesByPair.entries()) {
     const hasNonZeroDistance = values.some(v => Math.abs(v) > 1e-9);
     if (hasNonZeroDistance && horizontalByPair.has(key) && verticalByPair.has(key)) {
       return 'over_constrained_conflicting';
     }
+  }
+
+  if (hasConsistentDuplicate) {
+    return 'over_constrained_consistent';
   }
 
   if (points.length === 2) {
