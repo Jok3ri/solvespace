@@ -1,0 +1,35 @@
+{
+  "name": "topology_near_closed_gap_budget_01",
+  "type": "topology_chain",
+  "inputs": {
+    "entities": {
+      "segments": [
+        { "x1": 0.0, "y1": 0.0, "x2": 5.0, "y2": 0.0 },
+        { "x1": 5.0, "y1": 0.0, "x2": 5.0, "y2": 2.0 },
+        { "x1": 5.0, "y1": 2.0, "x2": 0.0, "y2": 2.0 },
+        { "x1": 0.0, "y1": 2.0, "x2": 0.0, "y2": 0.000005 }
+      ]
+    },
+    "operation": { "kind": "topology_chain" }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "topology_chain_continuity",
+        "continuous": true,
+        "segmentCount": 4,
+        "maxGap": 1e-09,
+        "minLength": 1.0,
+        "maxClosureGap": 1e-05,
+        "eps": 1e-09
+      },
+      {
+        "kind": "deterministic_outcome",
+        "repeats": 30,
+        "id": "det_topology_near_closed_gap_budget_01"
+      }
+    ]
+  },
+  "tags": ["edit-op", "topology", "continuity", "chain", "closure_tolerance"]
+}

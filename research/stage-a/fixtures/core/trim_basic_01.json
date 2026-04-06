@@ -1,0 +1,52 @@
+{
+  "name": "trim_basic_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "line": {
+        "id": "l0",
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "cutter": {
+        "id": "v0",
+        "x1": 5.0,
+        "y1": -5.0,
+        "x2": 5.0,
+        "y2": 5.0
+      }
+    },
+    "operation": {
+      "kind": "trim",
+      "target": "l0",
+      "click": {
+        "x": 8.0,
+        "y": 0.0
+      }
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "line_exists",
+        "id": "l0_left",
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 5.0,
+        "y2": 0.0,
+        "eps": 1e-07
+      },
+      {
+        "kind": "line_removed",
+        "id": "l0_right"
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "trim"
+  ]
+}

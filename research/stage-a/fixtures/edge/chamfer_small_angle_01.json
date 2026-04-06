@@ -1,0 +1,46 @@
+{
+  "name": "chamfer_small_angle_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "lineB": {
+        "x1": 10.0,
+        "y1": 0.0,
+        "x2": 20.0,
+        "y2": 0.5
+      }
+    },
+    "operation": {
+      "kind": "chamfer",
+      "distanceA": 0.2,
+      "distanceB": 0.2
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      {
+        "kind": "chamfer_points",
+        "pA": {
+          "x": 9.8,
+          "y": 0.0
+        },
+        "pB": {
+          "x": 10.1997504678,
+          "y": 0.0099875234
+        },
+        "eps": 1e-06
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "chamfer"
+  ]
+}

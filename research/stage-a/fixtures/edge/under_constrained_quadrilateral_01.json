@@ -1,0 +1,26 @@
+{
+  "name": "under_constrained_quadrilateral_01",
+  "type": "constraint-classification",
+  "inputs": {
+    "entities": {
+      "points": [
+        { "id": "p1", "x": 0.0, "y": 0.0 },
+        { "id": "p2", "x": 4.0, "y": 0.0 },
+        { "id": "p3", "x": 4.0, "y": 3.0 },
+        { "id": "p4", "x": 0.0, "y": 3.0 }
+      ]
+    },
+    "constraints": [
+      { "id": "c1", "kind": "distance", "a": "p1", "b": "p2", "value": 4.0 },
+      { "id": "c2", "kind": "distance", "a": "p2", "b": "p3", "value": 3.0 },
+      { "id": "c3", "kind": "distance", "a": "p3", "b": "p4", "value": 4.0 }
+    ]
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "solver_classification", "value": "under_constrained" }
+    ]
+  },
+  "tags": ["constraint", "classification", "under_constrained", "multi_entity", "quadrilateral"]
+}
