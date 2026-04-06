@@ -1,0 +1,1 @@
+{"name":"horizontal_basic_01","type":"constraint","inputs":{"entities":[],"constraints":[]},"expected":{"status":"ok","checks":["y(p1)=y(p2)"]}}

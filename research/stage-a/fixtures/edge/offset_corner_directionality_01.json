@@ -1,0 +1,34 @@
+{
+  "name": "offset_corner_directionality_01",
+  "type": "edit_op_offset",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "lineB": {
+        "x1": 10.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 10.0
+      }
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "corner",
+      "distance": 2.0,
+      "sideA": "left",
+      "sideB": "right"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "offset_corner_exists", "corner": { "x": 12.0, "y": 2.0 }, "eps": 1e-07, "minLength": 1e-06 }
+    ]
+  },
+  "tags": ["edit-op", "offset", "topology", "corner"]
+}
