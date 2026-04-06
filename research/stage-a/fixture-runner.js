@@ -54,11 +54,14 @@ function lineCircleIntersectionCount(line, arc) {
   const B = 2 * (fx * dx + fy * dy);
   const C = fx * fx + fy * fy - arc.r * arc.r;
   const D = B * B - 4 * A * C;
-  if (D < 0) return 0;
+  const discEps = 1e-12;
+  if (D < -discEps) return 0;
+  const Dn = Math.abs(D) <= discEps ? 0 : D;
 
-  const ts = D === 0 ? [-B / (2 * A)] : [(-B - Math.sqrt(D)) / (2 * A), (-B + Math.sqrt(D)) / (2 * A)];
+  const ts = Dn === 0 ? [-B / (2 * A)] : [(-B - Math.sqrt(Dn)) / (2 * A), (-B + Math.sqrt(Dn)) / (2 * A)];
   let count = 0;
   for (const t of ts) {
+    if (t < -1e-12 || t > 1 + 1e-12) continue; // segment-only intersection
     const x = line.x1 + t * dx;
     const y = line.y1 + t * dy;
     const th = Math.atan2(y - arc.cy, x - arc.cx);
@@ -143,8 +146,8 @@ function simulateChamfer(inputs) {
   if (!a || !b) return null;
   const p = lineIntersection(a,b);
   if (!p) return null;
-  const [uax,uay]=normalize(a.x1-p.x,a.y1-p.y);
-  const [ubx,uby]=normalize(b.x2-p.x,b.y2-p.y);
+  const [uax,uay]=rayFromIntersection(a, p);
+  const [ubx,uby]=rayFromIntersection(b, p);
   const dA = op.distanceA || 0;
   const dB = op.distanceB || 0;
   return {
@@ -158,6 +161,18 @@ function dot(ax, ay, bx, by) {
   return ax * bx + ay * by;
 }
 
+function rayFromIntersection(line, p) {
+  const e1 = { x: line.x1, y: line.y1 };
+  const e2 = { x: line.x2, y: line.y2 };
+  const d1 = Math.hypot(e1.x - p.x, e1.y - p.y);
+  const d2 = Math.hypot(e2.x - p.x, e2.y - p.y);
+  if (d1 > d2 + 1e-12) return normalize(e1.x - p.x, e1.y - p.y);
+  if (d2 > d1 + 1e-12) return normalize(e2.x - p.x, e2.y - p.y);
+  const pickE1 = (e1.x < e2.x) || (nearlyEqual(e1.x, e2.x, 1e-12) && e1.y <= e2.y);
+  const e = pickE1 ? e1 : e2;
+  return normalize(e.x - p.x, e.y - p.y);
+}
+
 function simulateFillet(inputs) {
   const a = inputs.entities.lineA;
   const b = inputs.entities.lineB;
@@ -166,8 +181,8 @@ function simulateFillet(inputs) {
   const p = lineIntersection(a, b);
   if (!p) return null;
 
-  const [uax, uay] = normalize(a.x1 - p.x, a.y1 - p.y);
-  const [ubx, uby] = normalize(b.x2 - p.x, b.y2 - p.y);
+  const [uax, uay] = rayFromIntersection(a, p);
+  const [ubx, uby] = rayFromIntersection(b, p);
   let c = dot(uax, uay, ubx, uby);
   c = Math.max(-1, Math.min(1, c));
   const phi = Math.acos(c);
@@ -194,18 +209,36 @@ function classifyConstraintScenario(inputs) {
   const points = (inputs.entities && inputs.entities.points) || [];
 
   const distancesByPair = new Map();
+  const horizontalByPair = new Set();
+  const verticalByPair = new Set();
   for (const c of constraints) {
-    if (c.kind !== 'distance') continue;
     const key = pairKey(c.a, c.b);
-    if (!distancesByPair.has(key)) distancesByPair.set(key, []);
-    distancesByPair.get(key).push(c.value);
+    if (c.kind === 'distance') {
+      if (!distancesByPair.has(key)) distancesByPair.set(key, []);
+      distancesByPair.get(key).push(c.value);
+    } else if (c.kind === 'horizontal') {
+      horizontalByPair.add(key);
+    } else if (c.kind === 'vertical') {
+      verticalByPair.add(key);
+    }
   }
 
+  let hasConsistentDuplicate = false;
   for (const values of distancesByPair.values()) {
     if (values.length < 2) continue;
     const first = values[0];
     const hasConflict = values.some(v => !nearlyEqual(v, first, 1e-9));
     if (hasConflict) return 'over_constrained_conflicting';
+    hasConsistentDuplicate = true;
+  }
+  for (const [key, values] of distancesByPair.entries()) {
+    const hasNonZeroDistance = values.some(v => Math.abs(v) > 1e-9);
+    if (hasNonZeroDistance && horizontalByPair.has(key) && verticalByPair.has(key)) {
+      return 'over_constrained_conflicting';
+    }
+  }
+
+  if (hasConsistentDuplicate) {
     return 'over_constrained_consistent';
   }
 
@@ -218,6 +251,47 @@ function classifyConstraintScenario(inputs) {
   }
 
   return 'under_constrained';
+}
+
+function simulateOperation(inputs) {
+  const op = inputs.operation || {};
+  switch (op.kind) {
+    case 'trim':
+      return simulateTrim(inputs);
+    case 'extend':
+      return simulateExtend(inputs);
+    case 'chamfer':
+      return simulateChamfer(inputs);
+    case 'fillet':
+      return simulateFillet(inputs);
+    default:
+      return null;
+  }
+}
+
+function stableStringify(x) {
+  if (Array.isArray(x)) return `[${x.map(stableStringify).join(',')}]`;
+  if (x && typeof x === 'object') {
+    const keys = Object.keys(x).sort();
+    return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify(x[k])}`).join(',')}}`;
+  }
+  return JSON.stringify(x);
+}
+
+function checkDeterministicOutcome(inputs, repeats = 30) {
+  const r = Math.max(2, repeats);
+  let baseline = null;
+  for (let i = 0; i < r; i++) {
+    const outcome = simulateOperation(inputs);
+    if (outcome == null) return false;
+    const encoded = stableStringify(outcome);
+    if (baseline === null) {
+      baseline = encoded;
+      continue;
+    }
+    if (encoded !== baseline) return false;
+  }
+  return true;
 }
 
 function runCheck(fix, check) {
@@ -248,7 +322,7 @@ function runCheck(fix, check) {
     case 'solver_classification':
       return classifyConstraintScenario(fix.inputs) === check.value;
     case 'deterministic_outcome':
-      return true; // placeholder until op engine exists
+      return checkDeterministicOutcome(fix.inputs, check.repeats || 30);
     case 'line_exists': {
       const result = simulateTrim(fix.inputs);
       return result.segments.some(s =>
@@ -294,6 +368,17 @@ function runCheck(fix, check) {
 function runFixture(file) {
   const fix = readJson(file);
   const checks = (fix.expected && fix.expected.checks) || [];
+  const allowNoChecks = !!(fix.expected && fix.expected.allowNoChecks);
+  if (checks.length === 0 && !allowNoChecks) {
+    return {
+      name: fix.name,
+      passed: false,
+      total: 0,
+      passedChecks: 0,
+      tags: fix.tags || [],
+      error: 'Fixture has no expected.checks'
+    };
+  }
   const results = checks.map(ch => runCheck(fix, ch));
   const passed = results.every(Boolean);
   return { name: fix.name, passed, total: checks.length, passedChecks: results.filter(Boolean).length, tags: fix.tags || [] };
