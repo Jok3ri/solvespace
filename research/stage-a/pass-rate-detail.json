@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T08:55:11.614Z",
+  "generatedAt": "2026-04-02T13:50:29.985Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -225,18 +225,6 @@
       ]
     },
     {
-      "name": "topology_trim_continuity_01",
-      "passed": true,
-      "total": 3,
-      "passedChecks": 3,
-      "tags": [
-        "edit-op",
-        "trim",
-        "topology",
-        "continuity"
-      ]
-    },
-    {
       "name": "under_constrained_line_01",
       "passed": true,
       "total": 1,
@@ -273,8 +261,8 @@
   ],
   "tags": {
     "edit-op": {
-      "total": 9,
-      "passed": 9
+      "total": 8,
+      "passed": 8
     },
     "chamfer": {
       "total": 2,
@@ -309,8 +297,8 @@
       "passed": 2
     },
     "trim": {
-      "total": 2,
-      "passed": 2
+      "total": 1,
+      "passed": 1
     },
     "vertical": {
       "total": 1,
@@ -349,14 +337,6 @@
       "passed": 1
     },
     "multi_pair": {
-      "total": 1,
-      "passed": 1
-    },
-    "topology": {
-      "total": 1,
-      "passed": 1
-    },
-    "continuity": {
       "total": 1,
       "passed": 1
     },

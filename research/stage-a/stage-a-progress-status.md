@@ -20,7 +20,7 @@ Stage A is **in progress**.
 ## What remains for Stage A completion
 
 1. Continue broadening multi-entity conflict variants and solver-classification edge families.
-2. Expand topology invariant checks beyond initial trim continuity coverage.
+2. Add topology invariant checks (connectivity/entity continuity).
 3. Add offset fixture family (simple/corner/self-intersection).
 4. Add deterministic repeat execution outputs into reports.
 5. Close open high-severity review findings from code-review intake.
@@ -37,4 +37,4 @@ Stage A is considered complete when all are true:
 
 ## Next research action (starting now)
 
-Add topology invariants for extend/chamfer/fillet output continuity and endpoint consistency.
+Add first topology invariant checks for edit-op outputs (entity continuity and endpoint consistency).

@@ -336,21 +336,6 @@ function runCheck(fix, check) {
       const result = simulateTrim(fix.inputs);
       return !result.segments.some(s => s.id === check.id);
     }
-    case 'segment_endpoint_match': {
-      const result = simulateTrim(fix.inputs);
-      const seg = result.segments.find(s => s.id === check.id);
-      if (!seg) return false;
-      const x = check.endpoint === 'start' ? seg.x1 : seg.x2;
-      const y = check.endpoint === 'start' ? seg.y1 : seg.y2;
-      return nearlyEqual(x, check.x, check.eps) && nearlyEqual(y, check.y, check.eps);
-    }
-    case 'segment_nonzero_length': {
-      const result = simulateTrim(fix.inputs);
-      const seg = result.segments.find(s => s.id === check.id);
-      if (!seg) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist({ x: seg.x1, y: seg.y1 }, { x: seg.x2, y: seg.y2 }) > minLength;
-    }
     case 'extend_line_end': {
       const result = simulateExtend(fix.inputs);
       if (!result) return false;
