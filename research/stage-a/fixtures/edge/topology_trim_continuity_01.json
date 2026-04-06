@@ -1,0 +1,34 @@
+{
+  "name": "topology_trim_continuity_01",
+  "type": "edit_op_topology",
+  "inputs": {
+    "entities": {
+      "line": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "cutter": {
+        "x1": 5.0,
+        "y1": -5.0,
+        "x2": 5.0,
+        "y2": 5.0
+      }
+    },
+    "operation": {
+      "kind": "trim",
+      "target": "line",
+      "click": { "x": 9.0, "y": 0.0 }
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "line_exists", "id": "l0_left", "x1": 0.0, "y1": 0.0, "x2": 5.0, "y2": 0.0, "eps": 1e-07 },
+      { "kind": "segment_endpoint_match", "id": "l0_left", "endpoint": "end", "x": 5.0, "y": 0.0, "eps": 1e-07 },
+      { "kind": "segment_nonzero_length", "id": "l0_left", "minLength": 1e-06 }
+    ]
+  },
+  "tags": ["edit-op", "trim", "topology", "continuity"]
+}
