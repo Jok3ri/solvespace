@@ -1,0 +1,30 @@
+{
+  "name": "offset_chain_round_policy_01",
+  "type": "offset_chain",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 3.0, "y": 0.0 },
+        { "x": 3.0, "y": 3.0 },
+        { "x": 1.0, "y": 3.0 },
+        { "x": 1.0, "y": 1.0 },
+        { "x": 4.0, "y": 1.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "chain_continuity",
+      "cornerPolicy": "round"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "offset_chain_continuity", "cornerCount": 4, "convexCount": 4, "concaveCount": 0 },
+      { "kind": "offset_chain_policy", "policy": "round", "cornerCount": 4 },
+      { "kind": "deterministic_outcome", "repeats": 50, "id": "det_offset_chain_round_policy_01" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "chain", "continuity", "policy", "multi_segment"]
+}
