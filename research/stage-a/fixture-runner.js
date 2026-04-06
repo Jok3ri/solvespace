@@ -336,31 +336,10 @@ function runCheck(fix, check) {
       const result = simulateTrim(fix.inputs);
       return !result.segments.some(s => s.id === check.id);
     }
-    case 'segment_endpoint_match': {
-      const result = simulateTrim(fix.inputs);
-      const seg = result.segments.find(s => s.id === check.id);
-      if (!seg) return false;
-      const x = check.endpoint === 'start' ? seg.x1 : seg.x2;
-      const y = check.endpoint === 'start' ? seg.y1 : seg.y2;
-      return nearlyEqual(x, check.x, check.eps) && nearlyEqual(y, check.y, check.eps);
-    }
-    case 'segment_nonzero_length': {
-      const result = simulateTrim(fix.inputs);
-      const seg = result.segments.find(s => s.id === check.id);
-      if (!seg) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist({ x: seg.x1, y: seg.y1 }, { x: seg.x2, y: seg.y2 }) > minLength;
-    }
     case 'extend_line_end': {
       const result = simulateExtend(fix.inputs);
       if (!result) return false;
       return nearlyEqual(result.x2, check.x2, check.eps) && nearlyEqual(result.y2, check.y2, check.eps);
-    }
-    case 'extend_nonzero_length': {
-      const result = simulateExtend(fix.inputs);
-      if (!result) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist({ x: result.x1, y: result.y1 }, { x: result.x2, y: result.y2 }) > minLength;
     }
     case 'chamfer_points': {
       const result = simulateChamfer(fix.inputs);
@@ -369,12 +348,6 @@ function runCheck(fix, check) {
         && nearlyEqual(result.pA.y, check.pA.y, check.eps)
         && nearlyEqual(result.pB.x, check.pB.x, check.eps)
         && nearlyEqual(result.pB.y, check.pB.y, check.eps);
-    }
-    case 'chamfer_non_degenerate': {
-      const result = simulateChamfer(fix.inputs);
-      if (!result) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return dist(result.pA, result.pB) > minLength;
     }
     case 'fillet_geometry': {
       const result = simulateFillet(fix.inputs);
@@ -386,15 +359,6 @@ function runCheck(fix, check) {
         && nearlyEqual(result.center.x, check.center.x, check.eps)
         && nearlyEqual(result.center.y, check.center.y, check.eps)
         && nearlyEqual(result.radius, check.radius, check.eps);
-    }
-    case 'fillet_non_degenerate': {
-      const result = simulateFillet(fix.inputs);
-      if (!result) return false;
-      const minLength = typeof check.minLength === 'number' ? check.minLength : 1e-12;
-      return result.radius > 0
-        && Number.isFinite(result.center.x)
-        && Number.isFinite(result.center.y)
-        && dist(result.pA, result.pB) > minLength;
     }
     default:
       return false;
