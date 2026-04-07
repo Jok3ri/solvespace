@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-03T12:42:36.934Z",
-  "total": 3,
-  "passed": 3,
+  "generatedAt": "2026-04-03T15:08:02.500Z",
+  "total": 6,
+  "passed": 6,
   "failed": 0,
   "checks": [
     {
@@ -17,7 +17,25 @@
       "repeats": 40
     },
     {
+      "fixture": "offset_chain_mixed_turn_stress_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 50
+    },
+    {
       "fixture": "tiny_radius_fillet_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_fillet_chamfer_continuity_01",
+      "bucket": "edge",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_trim_extend_continuity_01",
       "bucket": "edge",
       "passed": true,
       "repeats": 30
