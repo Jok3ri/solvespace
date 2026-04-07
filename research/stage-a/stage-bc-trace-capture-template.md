@@ -30,3 +30,51 @@ Use this template when comparing Stage A expected behavior with actual SolveSpac
 2. List of newly discovered edge cases.
 3. Fixture update candidates (new/changed JSON fixtures).
 4. Decision: does this block parity confidence? (yes/no + rationale)
+
+
+## Recommended fixture seed
+
+Use `research/stage-a/stage-bc-trace-fixture-priority.json` as the default Stage B/C capture seed.
+
+Before trace capture, run:
+
+```bash
+node research/stage-a/validate-trace-priority.js
+```
+
+This verifies every fixture listed in the seed file resolves to an existing JSON fixture.
+
+Then generate a prefilled capture sheet:
+
+```bash
+node research/stage-a/generate-trace-session.js
+```
+
+This writes `research/stage-a/stage-bc-trace-session-seed.md` with one row per priority fixture.
+
+Optionally verify seed/manifest alignment:
+
+```bash
+node research/stage-a/verify-trace-session.js
+```
+
+
+Track capture progress at any time:
+
+```bash
+node research/stage-a/trace-session-progress.js
+```
+
+
+Or run the full prep pipeline in one command:
+
+```bash
+./research/stage-a/prepare-trace-session.sh
+```
+
+
+Initialize a timestamped runtime trace session file:
+
+```bash
+node research/stage-a/init-trace-session.js --id <trace_id>
+```

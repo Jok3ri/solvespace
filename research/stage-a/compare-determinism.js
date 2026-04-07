@@ -23,8 +23,18 @@ if (!fs.existsSync(baselinePath)) {
 const current = readJson(currentPath);
 const baseline = readJson(baselinePath);
 
+function checkKey(row = {}) {
+  const bucket = row.bucket || 'unknown';
+  const fixture = row.fixture || 'unknown_fixture';
+  if (typeof row.checkId === 'string' && row.checkId.length > 0) {
+    return `${bucket}::${fixture}::id_${row.checkId}`;
+  }
+  const checkIndex = Number.isInteger(row.checkIndex) ? row.checkIndex : 0;
+  return `${bucket}::${fixture}::check_${checkIndex}`;
+}
+
 function mapByFixture(list = []) {
-  return Object.fromEntries(list.map(x => [x.fixture, x]));
+  return Object.fromEntries(list.map(x => [checkKey(x), x]));
 }
 
 const cur = mapByFixture(current.checks || []);
@@ -34,6 +44,7 @@ const names = [...new Set([...Object.keys(cur), ...Object.keys(base)])].sort();
 const regressions = [];
 const missingInCurrent = [];
 const newInCurrent = [];
+const newFailingInCurrent = [];
 for (const n of names) {
   const c = cur[n];
   const b = base[n];
@@ -43,6 +54,7 @@ for (const n of names) {
   }
   if (c && !b) {
     newInCurrent.push(n);
+    if (!c.passed) newFailingInCurrent.push(n);
     continue;
   }
   if (b.passed && !c.passed) regressions.push(n);
@@ -55,6 +67,10 @@ if (newInCurrent.length) {
   console.log('New deterministic fixtures in current run:');
   newInCurrent.forEach(n => console.log(`  ${n}`));
 }
+if (newFailingInCurrent.length) {
+  console.log('New failing deterministic checks in current run:');
+  newFailingInCurrent.forEach(n => console.log(`  ${n}`));
+}
 if (missingInCurrent.length) {
   console.log('Missing deterministic fixtures from current run:');
   missingInCurrent.forEach(n => console.log(`  ${n}`));
@@ -64,7 +80,7 @@ if (regressions.length) {
   regressions.forEach(n => console.log(`  ${n}`));
 }
 
-if (regressions.length || missingInCurrent.length || current.passed < baseline.passed) {
+if (regressions.length || missingInCurrent.length || newFailingInCurrent.length || current.passed < baseline.passed) {
   console.error('Determinism regression detected vs baseline.');
   process.exit(1);
 }

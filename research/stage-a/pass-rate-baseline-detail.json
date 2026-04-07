@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-03T15:08:02.500Z",
+  "generatedAt": "2026-04-06T10:02:06.810Z",
   "core": [
     {
       "name": "chamfer_oblique_01",
@@ -12,6 +12,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "chamfer_points",
           "passed": true
         }
@@ -28,6 +30,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "point_equal",
           "passed": true
         }
@@ -44,6 +48,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "distance",
           "passed": true
         }
@@ -60,6 +66,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "extend_line_end",
           "passed": true
         }
@@ -76,6 +84,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "extend_line_end",
           "passed": true
         }
@@ -92,6 +102,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "fillet_geometry",
           "passed": true
         }
@@ -108,6 +120,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "fillet_geometry",
           "passed": true
         }
@@ -124,6 +138,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "equal_y",
           "passed": true
         }
@@ -140,6 +156,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "line_circle_distance",
           "passed": true
         }
@@ -156,10 +174,14 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": "l0_left",
           "kind": "line_exists",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "l0_right",
           "kind": "line_removed",
           "passed": true
         }
@@ -176,6 +198,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "equal_x",
           "passed": true
         }
@@ -194,6 +218,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "point_equal",
           "passed": true
         }
@@ -210,7 +236,61 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "chamfer_points",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "extend_positive_x_reversed_endpoints_01",
+      "passed": true,
+      "total": 3,
+      "passedChecks": 3,
+      "tags": [
+        "edit-op",
+        "extend",
+        "topology",
+        "edge-ordering"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "extend_line_start",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": null,
+          "kind": "extend_line_end",
+          "passed": true
+        },
+        {
+          "index": 2,
+          "id": null,
+          "kind": "extend_nonzero_length",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "missing_point_distance_guard_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "harness",
+        "robustness",
+        "constraint",
+        "diagnostic"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "distance_invalid_reference_returns_false",
           "passed": true
         }
       ]
@@ -226,6 +306,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "classified_as_parallel",
           "passed": true
         }
@@ -243,6 +325,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "distance",
           "passed": true
         }
@@ -259,8 +343,78 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "intersection_count",
           "passed": true
+        }
+      ]
+    },
+    {
+      "name": "offset_chain_bevel_policy_01",
+      "passed": true,
+      "total": 3,
+      "passedChecks": 3,
+      "tags": [
+        "edit-op",
+        "offset",
+        "chain",
+        "policy",
+        "continuity"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "offset_chain_continuity",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": null,
+          "kind": "offset_chain_policy",
+          "passed": true
+        },
+        {
+          "index": 2,
+          "id": "det_offset_chain_bevel_policy_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 40
+        }
+      ]
+    },
+    {
+      "name": "offset_chain_complexity_guard_01",
+      "passed": true,
+      "total": 3,
+      "passedChecks": 3,
+      "tags": [
+        "edit-op",
+        "offset",
+        "diagnostic",
+        "chain",
+        "complexity_guard"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "offset_diagnostic_reason",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": null,
+          "kind": "offset_diagnostic_limits",
+          "passed": true
+        },
+        {
+          "index": 2,
+          "id": "det_offset_chain_complexity_guard_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 40
         }
       ]
     },
@@ -278,10 +432,14 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_chain_continuity",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "det_offset_chain_concave_continuity_01",
           "kind": "deterministic_outcome",
           "passed": true,
           "repeats": 40
@@ -302,10 +460,14 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_chain_continuity",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "det_offset_chain_convex_continuity_01",
           "kind": "deterministic_outcome",
           "passed": true,
           "repeats": 40
@@ -328,10 +490,78 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_chain_continuity",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "det_offset_chain_mixed_turn_stress_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 50
+        }
+      ]
+    },
+    {
+      "name": "offset_chain_multisegment_zigzag_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "offset",
+        "chain",
+        "continuity",
+        "stress",
+        "multi_segment"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "offset_chain_continuity",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": "det_offset_chain_multisegment_zigzag_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 50
+        }
+      ]
+    },
+    {
+      "name": "offset_chain_round_policy_01",
+      "passed": true,
+      "total": 3,
+      "passedChecks": 3,
+      "tags": [
+        "edit-op",
+        "offset",
+        "chain",
+        "continuity",
+        "policy",
+        "multi_segment"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "offset_chain_continuity",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": null,
+          "kind": "offset_chain_policy",
+          "passed": true
+        },
+        {
+          "index": 2,
+          "id": "det_offset_chain_round_policy_01",
           "kind": "deterministic_outcome",
           "passed": true,
           "repeats": 50
@@ -353,6 +583,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_diagnostic_reason",
           "passed": true
         }
@@ -371,6 +603,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_corner_exists",
           "passed": true
         }
@@ -389,6 +623,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_corner_exists",
           "passed": true
         }
@@ -407,6 +643,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_corner_exists",
           "passed": true
         }
@@ -425,6 +663,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_unsupported",
           "passed": true
         }
@@ -444,6 +684,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_self_intersection_detected",
           "passed": true
         }
@@ -463,6 +705,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_unsupported",
           "passed": true
         }
@@ -480,6 +724,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "offset_line_exists",
           "passed": true
         }
@@ -498,6 +744,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -516,6 +764,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -535,6 +785,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -554,6 +806,30 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "over_constrained_quadrilateral_conflict_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "over_constrained",
+        "conflict",
+        "multi_entity",
+        "quadrilateral"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -574,6 +850,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -594,6 +872,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -610,6 +890,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": "det_tiny_radius_fillet_01",
           "kind": "deterministic_outcome",
           "passed": true,
           "repeats": 30
@@ -629,8 +911,38 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "chamfer_non_degenerate",
           "passed": true
+        }
+      ]
+    },
+    {
+      "name": "topology_closed_loop_square_continuity_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "topology",
+        "continuity",
+        "chain",
+        "closed_loop"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "topology_chain_continuity",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": "det_topology_closed_loop_square_continuity_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 30
         }
       ]
     },
@@ -647,10 +959,14 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "extend_line_end",
           "passed": true
         },
         {
+          "index": 1,
+          "id": null,
           "kind": "extend_nonzero_length",
           "passed": true
         }
@@ -669,6 +985,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "fillet_non_degenerate",
           "passed": true
         }
@@ -688,10 +1006,14 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "topology_chain_continuity",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "det_topology_multistep_fillet_chamfer_continuity_01",
           "kind": "deterministic_outcome",
           "passed": true,
           "repeats": 30
@@ -712,10 +1034,70 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "topology_chain_continuity",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "det_topology_multistep_trim_extend_continuity_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 30
+        }
+      ]
+    },
+    {
+      "name": "topology_near_closed_gap_budget_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "topology",
+        "continuity",
+        "chain",
+        "closure_tolerance"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "topology_chain_continuity",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": "det_topology_near_closed_gap_budget_01",
+          "kind": "deterministic_outcome",
+          "passed": true,
+          "repeats": 30
+        }
+      ]
+    },
+    {
+      "name": "topology_segment_count_guard_01",
+      "passed": true,
+      "total": 2,
+      "passedChecks": 2,
+      "tags": [
+        "edit-op",
+        "topology",
+        "continuity",
+        "chain",
+        "segment_count"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
+          "kind": "topology_chain_continuity",
+          "passed": true
+        },
+        {
+          "index": 1,
+          "id": "det_topology_segment_count_guard_01",
           "kind": "deterministic_outcome",
           "passed": true,
           "repeats": 30
@@ -735,14 +1117,20 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": "l0_left",
           "kind": "line_exists",
           "passed": true
         },
         {
+          "index": 1,
+          "id": "l0_left",
           "kind": "segment_endpoint_match",
           "passed": true
         },
         {
+          "index": 2,
+          "id": "l0_left",
           "kind": "segment_nonzero_length",
           "passed": true
         }
@@ -760,6 +1148,29 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "under_constrained_quadrilateral_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "under_constrained",
+        "multi_entity",
+        "quadrilateral"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -778,6 +1189,29 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
+          "kind": "solver_classification",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "well_constrained_coincident_pair_01",
+      "passed": true,
+      "total": 1,
+      "passedChecks": 1,
+      "tags": [
+        "constraint",
+        "classification",
+        "well_constrained",
+        "near-singular",
+        "coincident"
+      ],
+      "checkResults": [
+        {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -795,6 +1229,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -814,6 +1250,8 @@
       ],
       "checkResults": [
         {
+          "index": 0,
+          "id": null,
           "kind": "solver_classification",
           "passed": true
         }
@@ -822,28 +1260,28 @@
   ],
   "tags": {
     "edit-op": {
-      "total": 25,
-      "passed": 25
+      "total": 33,
+      "passed": 33
     },
     "chamfer": {
       "total": 3,
       "passed": 3
     },
     "coincident": {
-      "total": 2,
-      "passed": 2
+      "total": 3,
+      "passed": 3
     },
     "constraint": {
-      "total": 17,
-      "passed": 17
+      "total": 21,
+      "passed": 21
     },
     "distance": {
       "total": 2,
       "passed": 2
     },
     "extend": {
-      "total": 3,
-      "passed": 3
+      "total": 4,
+      "passed": 4
     },
     "fillet": {
       "total": 4,
@@ -865,6 +1303,26 @@
       "total": 1,
       "passed": 1
     },
+    "topology": {
+      "total": 21,
+      "passed": 21
+    },
+    "edge-ordering": {
+      "total": 1,
+      "passed": 1
+    },
+    "harness": {
+      "total": 1,
+      "passed": 1
+    },
+    "robustness": {
+      "total": 1,
+      "passed": 1
+    },
+    "diagnostic": {
+      "total": 6,
+      "passed": 6
+    },
     "intersection": {
       "total": 2,
       "passed": 2
@@ -874,36 +1332,40 @@
       "passed": 1
     },
     "near-singular": {
+      "total": 2,
+      "passed": 2
+    },
+    "offset": {
+      "total": 15,
+      "passed": 15
+    },
+    "chain": {
+      "total": 12,
+      "passed": 12
+    },
+    "policy": {
+      "total": 2,
+      "passed": 2
+    },
+    "continuity": {
+      "total": 15,
+      "passed": 15
+    },
+    "complexity_guard": {
       "total": 1,
       "passed": 1
     },
-    "offset": {
-      "total": 11,
-      "passed": 11
-    },
-    "topology": {
-      "total": 17,
-      "passed": 17
-    },
-    "continuity": {
-      "total": 9,
-      "passed": 9
-    },
-    "chain": {
-      "total": 5,
-      "passed": 5
-    },
     "stress": {
-      "total": 2,
-      "passed": 2
+      "total": 3,
+      "passed": 3
     },
     "mixed": {
       "total": 2,
       "passed": 2
     },
-    "diagnostic": {
-      "total": 4,
-      "passed": 4
+    "multi_segment": {
+      "total": 2,
+      "passed": 2
     },
     "unsupported": {
       "total": 1,
@@ -918,16 +1380,16 @@
       "passed": 2
     },
     "classification": {
-      "total": 10,
-      "passed": 10
+      "total": 13,
+      "passed": 13
     },
     "over_constrained": {
-      "total": 6,
-      "passed": 6
+      "total": 7,
+      "passed": 7
     },
     "conflict": {
-      "total": 4,
-      "passed": 4
+      "total": 5,
+      "passed": 5
     },
     "redundant": {
       "total": 2,
@@ -937,25 +1399,41 @@
       "total": 1,
       "passed": 1
     },
+    "multi_entity": {
+      "total": 5,
+      "passed": 5
+    },
+    "quadrilateral": {
+      "total": 2,
+      "passed": 2
+    },
     "triangle": {
       "total": 4,
       "passed": 4
     },
-    "multi_entity": {
-      "total": 3,
-      "passed": 3
+    "closed_loop": {
+      "total": 1,
+      "passed": 1
     },
     "multi_step": {
       "total": 2,
       "passed": 2
     },
+    "closure_tolerance": {
+      "total": 1,
+      "passed": 1
+    },
+    "segment_count": {
+      "total": 1,
+      "passed": 1
+    },
     "under_constrained": {
-      "total": 2,
-      "passed": 2
+      "total": 3,
+      "passed": 3
     },
     "well_constrained": {
-      "total": 2,
-      "passed": 2
+      "total": 3,
+      "passed": 3
     }
   },
   "gates": {

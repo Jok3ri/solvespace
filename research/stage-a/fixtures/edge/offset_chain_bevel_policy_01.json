@@ -1,0 +1,29 @@
+{
+  "name": "offset_chain_bevel_policy_01",
+  "type": "offset_chain",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 3.0, "y": 0.0 },
+        { "x": 3.0, "y": 2.0 },
+        { "x": 1.0, "y": 2.0 },
+        { "x": 1.0, "y": 4.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "chain_continuity",
+      "cornerPolicy": "bevel"
+    }
+  },
+  "expected": {
+    "status": "ok",
+    "checks": [
+      { "kind": "offset_chain_continuity", "cornerCount": 3, "convexCount": 2, "concaveCount": 1 },
+      { "kind": "offset_chain_policy", "policy": "bevel", "cornerCount": 3 },
+      { "kind": "deterministic_outcome", "repeats": 40, "id": "det_offset_chain_bevel_policy_01" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "chain", "policy", "continuity"]
+}

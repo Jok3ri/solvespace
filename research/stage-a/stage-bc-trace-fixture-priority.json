@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-06",
+  "tiers": [
+    {
+      "name": "p0_runtime_parity",
+      "description": "Minimum fixture set to capture first-pass SolveSpace runtime parity traces.",
+      "fixtures": [
+        { "name": "distance_basic_01", "bucket": "core", "family": "constraint", "reason": "baseline distance equation parity" },
+        { "name": "coincident_basic_01", "bucket": "core", "family": "constraint", "reason": "point coincidence normalization" },
+        { "name": "trim_basic_01", "bucket": "core", "family": "edit-op", "reason": "segment split/removal parity" },
+        { "name": "extend_oblique_01", "bucket": "core", "family": "edit-op", "reason": "oblique extend intersection handling" },
+        { "name": "fillet_oblique_01", "bucket": "core", "family": "edit-op", "reason": "fillet center/tangent geometry parity" },
+        { "name": "fillet_oblique_small_angle_01", "bucket": "edge", "family": "edit-op", "reason": "small-angle oblique fillet determinism and diagnostic parity" },
+        { "name": "over_constrained_mixed_conflict_01", "bucket": "edge", "family": "classification", "reason": "conflicting constraint classification" },
+        { "name": "well_constrained_coincident_pair_01", "bucket": "edge", "family": "classification", "reason": "near-singular coincident pair behavior" },
+        { "name": "offset_chain_round_policy_01", "bucket": "edge", "family": "offset", "reason": "corner policy and chain turn parity" },
+        { "name": "offset_chain_multisegment_zigzag_01", "bucket": "edge", "family": "offset", "reason": "mixed convex/concave multi-segment stress" },
+        { "name": "topology_closed_loop_square_continuity_01", "bucket": "edge", "family": "topology", "reason": "closed-loop continuity/closure gap parity" },
+        { "name": "topology_segment_count_guard_01", "bucket": "edge", "family": "topology", "reason": "segment-count invariant parity" },
+        { "name": "near_singular_distance_01", "bucket": "edge", "family": "numeric-stability", "reason": "epsilon-sensitive distance stability" }
+      ]
+    }
+  ]
+}

@@ -53,6 +53,7 @@ function fixtureRegressions(curList, baseList) {
   const flippedToPass = [];
   const missingInCurrent = [];
   const newInCurrent = [];
+  const newFailingInCurrent = [];
   for (const n of names) {
     const c = cur[n];
     const b = base[n];
@@ -62,12 +63,13 @@ function fixtureRegressions(curList, baseList) {
     }
     if (c && !b) {
       newInCurrent.push(n);
+      if (!c.passed) newFailingInCurrent.push(n);
       continue;
     }
     if (b.passed && !c.passed) flippedToFail.push(n);
     if (!b.passed && c.passed) flippedToPass.push(n);
   }
-  return { flippedToFail, flippedToPass, missingInCurrent, newInCurrent };
+  return { flippedToFail, flippedToPass, missingInCurrent, newInCurrent, newFailingInCurrent };
 }
 
 const dCore = delta(current.core, baseline.core);
@@ -101,13 +103,19 @@ if (coreFx.newInCurrent.length || edgeFx.newInCurrent.length) {
   coreFx.newInCurrent.forEach(n => console.log(`  [CORE] ${n}`));
   edgeFx.newInCurrent.forEach(n => console.log(`  [EDGE] ${n}`));
 }
+if (coreFx.newFailingInCurrent.length || edgeFx.newFailingInCurrent.length) {
+  console.log('New failing fixtures in current run:');
+  coreFx.newFailingInCurrent.forEach(n => console.log(`  [CORE] ${n}`));
+  edgeFx.newFailingInCurrent.forEach(n => console.log(`  [EDGE] ${n}`));
+}
 
 const coreRegressed = current.core.rate < baseline.core.rate;
 const edgeRegressed = current.edge.rate < baseline.edge.rate;
 const fixtureRegressed = coreFx.flippedToFail.length > 0 || edgeFx.flippedToFail.length > 0;
 const fixtureMissing = coreFx.missingInCurrent.length > 0 || edgeFx.missingInCurrent.length > 0;
+const newFailingFixture = coreFx.newFailingInCurrent.length > 0 || edgeFx.newFailingInCurrent.length > 0;
 
-if (coreRegressed || edgeRegressed || fixtureRegressed || fixtureMissing) {
+if (coreRegressed || edgeRegressed || fixtureRegressed || fixtureMissing || newFailingFixture) {
   console.error('Regression detected vs baseline.');
   process.exit(1);
 }

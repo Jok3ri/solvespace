@@ -16,13 +16,13 @@ Stage A is **in progress**.
 3. Initial capability matrix seed and research backlog.
 4. Determinism repeat protocol and Stage B/C trace template.
 5. Executable under/over-constrained slice expanded (U1/U2/O1/O2/O3/W1 class checks).
+6. Harness robustness guard added for missing-point reference checks (fixture-level fail, no run abort).
 
 ## What remains for Stage A completion
 
 1. Continue broadening multi-entity conflict variants and solver-classification edge families.
-2. Expand topology invariant checks beyond current trim/extend/chamfer/fillet continuity coverage.
-3. Expand offset fixture family from current simple/corner/self-intersection detection to broader multi-segment and stress variants.
-4. Close open high-severity review findings from code-review intake.
+2. Expand offset fixture family from current simple/corner/self-intersection detection to broader multi-segment and stress variants.
+3. Confirm all high-severity review findings remain resolved as fixture corpus evolves.
 
 ## Stage A definition of done
 
@@ -36,4 +36,4 @@ Stage A is considered complete when all are true:
 
 ## Next research action (starting now)
 
-Close open high-severity review findings from code-review intake or document explicit defer rationale.
+Prepare Stage B/C runtime trace parity capture using the expanded Stage A fixture corpus.

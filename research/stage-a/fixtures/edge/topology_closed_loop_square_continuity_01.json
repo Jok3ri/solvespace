@@ -1,5 +1,5 @@
 {
-  "name": "topology_multistep_trim_extend_continuity_01",
+  "name": "topology_closed_loop_square_continuity_01",
   "type": "topology_chain",
   "inputs": {
     "entities": {
@@ -7,20 +7,26 @@
         {
           "x1": 0.0,
           "y1": 0.0,
-          "x2": 3.0,
+          "x2": 4.0,
           "y2": 0.0
         },
         {
-          "x1": 3.0,
+          "x1": 4.0,
           "y1": 0.0,
-          "x2": 3.0,
-          "y2": 4.0
+          "x2": 4.0,
+          "y2": 3.0
         },
         {
-          "x1": 3.0,
-          "y1": 4.0,
-          "x2": 7.0,
-          "y2": 4.0
+          "x1": 4.0,
+          "y1": 3.0,
+          "x2": 0.0,
+          "y2": 3.0
+        },
+        {
+          "x1": 0.0,
+          "y1": 3.0,
+          "x2": 0.0,
+          "y2": 0.0
         }
       ]
     },
@@ -34,14 +40,16 @@
       {
         "kind": "topology_chain_continuity",
         "continuous": true,
+        "requireClosed": true,
         "maxGap": 1e-09,
-        "minLength": 1.0,
+        "maxClosureGap": 1e-09,
+        "minLength": 3.0,
         "eps": 1e-09
       },
       {
         "kind": "deterministic_outcome",
         "repeats": 30,
-        "id": "det_topology_multistep_trim_extend_continuity_01"
+        "id": "det_topology_closed_loop_square_continuity_01"
       }
     ]
   },
@@ -50,6 +58,6 @@
     "topology",
     "continuity",
     "chain",
-    "multi_step"
+    "closed_loop"
   ]
 }

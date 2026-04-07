@@ -13,7 +13,7 @@ Use this template to paste Codex/GitHub review findings so they can be converted
 
 | Issue ID | File/Area | Severity | Summary | Suggested Fix | Research Impact | Owner | Status |
 |---|---|---|---|---|---|---|---|
-| ex-001 | research/stage-a/fixture-runner.js | high | Missing solver conflict classification checks | Add classification output + checks | Blocks parity confidence | unassigned | open |
+| ex-001 | research/stage-a/fixture-runner.js + fixtures/edge | high | Missing solver conflict classification checks | Add classification output + checks | Blocks parity confidence | stage-a-research | resolved (fixtures added through quadrilateral conflict coverage) |
 
 ## Severity policy
 

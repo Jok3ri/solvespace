@@ -18,6 +18,7 @@
     },
     "operation": {
       "kind": "offset",
+      "mode": "unsupported_preview",
       "distance": 2.0,
       "side": "positive_y"
     }
@@ -25,7 +26,7 @@
   "expected": {
     "status": "diagnostic",
     "checks": [
-      { "kind": "offset_unsupported" }
+      { "kind": "offset_unsupported", "reason": "unsupported_mode" }
     ]
   },
   "tags": ["edit-op", "offset", "topology", "diagnostic"]

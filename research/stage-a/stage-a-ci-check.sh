@@ -8,3 +8,10 @@ node "${SCRIPT_DIR}/compare-pass-rate.js"
 node "${SCRIPT_DIR}/compare-determinism.js"
 
 echo "Stage A CI-style check passed."
+
+"${SCRIPT_DIR}/prepare-trace-session.sh"
+
+node "${SCRIPT_DIR}/generate-stage-a-status-report.js"
+node "${SCRIPT_DIR}/append-stage-a-status-history.js"
+node "${SCRIPT_DIR}/check-stage-a-status-trend.js"
+node "${SCRIPT_DIR}/render-stage-a-status-trend.js"

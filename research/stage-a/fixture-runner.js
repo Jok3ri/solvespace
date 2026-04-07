@@ -109,8 +109,11 @@ function simulateExtend(inputs) {
   const vy = l.y2 - l.y1;
 
   if (op.direction === 'positive_x') {
-    if (p.x <= l.x2) return null;
-    return { id: 'l0_extended', x1: l.x1, y1: l.y1, x2: p.x, y2: p.y };
+    const maxX = Math.max(l.x1, l.x2);
+    if (p.x <= maxX) return null;
+    const keepFirst = (l.x1 < l.x2) || (nearlyEqual(l.x1, l.x2, 1e-12) && l.y1 <= l.y2);
+    const keep = keepFirst ? { x: l.x1, y: l.y1 } : { x: l.x2, y: l.y2 };
+    return { id: 'l0_extended', x1: keep.x, y1: keep.y, x2: p.x, y2: p.y };
   }
 
   if (op.direction === 'forward') {
@@ -203,6 +206,12 @@ function simulateFillet(inputs) {
 function simulateOffset(inputs) {
   const ent = inputs.entities || {};
   const op = inputs.operation || {};
+  if (op.mode === 'unsupported_preview') {
+    return {
+      type: 'diagnostic',
+      reason: 'unsupported_mode'
+    };
+  }
   if (Array.isArray(ent.polyline) && op.mode === 'chain_continuity') {
     const pts = ent.polyline;
     if (pts.length < 3) return null;
@@ -353,10 +362,15 @@ function simulateTopologyChain(inputs) {
     maxGap = Math.max(maxGap, gap);
   }
 
+  const first = segments[0];
+  const last = segments[segments.length - 1];
+  const closureGap = dist({ x: last.x2, y: last.y2 }, { x: first.x1, y: first.y1 });
+
   return {
     type: 'topology_chain',
     segmentCount: segments.length,
     maxGap,
+    closureGap,
     minLength,
     continuous: maxGap <= 1e-9 && minLength > 1e-12
   };
@@ -483,22 +497,39 @@ function checkDeterministicOutcome(inputs, repeats = 30) {
 
 function runCheck(fix, check) {
   const ent = (fix.inputs && fix.inputs.entities) || {};
+  const pointsById = Object.fromEntries((ent.points || []).map(p => [p.id, p]));
+  const distanceFromPoints = (aId, bId) => {
+    const a = pointsById[aId];
+    const b = pointsById[bId];
+    if (!a || !b) return null;
+    return dist(a, b);
+  };
   switch (check.kind) {
     case 'distance': {
-      const pts = Object.fromEntries((ent.points || []).map(p => [p.id, p]));
-      return nearlyEqual(dist(pts[check.a], pts[check.b]), check.value, check.eps);
+      const d = distanceFromPoints(check.a, check.b);
+      return d !== null && nearlyEqual(d, check.value, check.eps);
+    }
+    case 'distance_invalid_reference_returns_false': {
+      const d = distanceFromPoints(check.a, check.b);
+      return d === null;
     }
     case 'equal_x': {
-      const pts = Object.fromEntries((ent.points || []).map(p => [p.id, p]));
-      return nearlyEqual(pts[check.a].x, pts[check.b].x, check.eps);
+      const a = pointsById[check.a];
+      const b = pointsById[check.b];
+      if (!a || !b) return false;
+      return nearlyEqual(a.x, b.x, check.eps);
     }
     case 'equal_y': {
-      const pts = Object.fromEntries((ent.points || []).map(p => [p.id, p]));
-      return nearlyEqual(pts[check.a].y, pts[check.b].y, check.eps);
+      const a = pointsById[check.a];
+      const b = pointsById[check.b];
+      if (!a || !b) return false;
+      return nearlyEqual(a.y, b.y, check.eps);
     }
     case 'point_equal': {
-      const pts = Object.fromEntries((ent.points || []).map(p => [p.id, p]));
-      return nearlyEqual(pts[check.a].x, pts[check.b].x, check.eps) && nearlyEqual(pts[check.a].y, pts[check.b].y, check.eps);
+      const a = pointsById[check.a];
+      const b = pointsById[check.b];
+      if (!a || !b) return false;
+      return nearlyEqual(a.x, b.x, check.eps) && nearlyEqual(a.y, b.y, check.eps);
     }
     case 'line_circle_distance':
       return nearlyEqual(lineCircleDistance(ent.line, ent.circle), check.value, check.eps);
@@ -542,6 +573,11 @@ function runCheck(fix, check) {
       const result = simulateExtend(fix.inputs);
       if (!result) return false;
       return nearlyEqual(result.x2, check.x2, check.eps) && nearlyEqual(result.y2, check.y2, check.eps);
+    }
+    case 'extend_line_start': {
+      const result = simulateExtend(fix.inputs);
+      if (!result) return false;
+      return nearlyEqual(result.x1, check.x1, check.eps) && nearlyEqual(result.y1, check.y1, check.eps);
     }
     case 'extend_nonzero_length': {
       const result = simulateExtend(fix.inputs);
@@ -593,7 +629,9 @@ function runCheck(fix, check) {
     }
     case 'offset_unsupported': {
       const result = simulateOffset(fix.inputs);
-      return result === null || (result && result.type === 'diagnostic');
+      if (!result || result.type !== 'diagnostic') return false;
+      if (typeof check.reason === 'string') return result.reason === check.reason;
+      return typeof result.reason === 'string' && result.reason.startsWith('unsupported');
     }
     case 'offset_corner_exists': {
       const result = simulateOffset(fix.inputs);
@@ -623,13 +661,34 @@ function runCheck(fix, check) {
       const result = simulateOffset(fix.inputs);
       return !!result && result.type === 'diagnostic' && result.reason === check.reason;
     }
+    case 'offset_diagnostic_limits': {
+      const result = simulateOffset(fix.inputs);
+      if (!result || result.type !== 'diagnostic') return false;
+      if (typeof check.reason === 'string' && result.reason !== check.reason) return false;
+      if (typeof check.vertexCount === 'number' && result.vertexCount !== check.vertexCount) return false;
+      if (typeof check.maxVerticesSupported === 'number' && result.maxVerticesSupported !== check.maxVerticesSupported) return false;
+      return true;
+    }
+    case 'offset_chain_policy': {
+      const result = simulateOffset(fix.inputs);
+      if (!result || result.type !== 'chain') return false;
+      if (typeof check.policy === 'string' && result.policy !== check.policy) return false;
+      if (typeof check.cornerCount === 'number' && result.cornerCount !== check.cornerCount) return false;
+      return true;
+    }
     case 'topology_chain_continuity': {
       const result = simulateTopologyChain(fix.inputs);
       if (!result || result.type !== 'topology_chain') return false;
       const eps = check.eps || 1e-9;
       if (check.continuous === true && !result.continuous) return false;
+      if (typeof check.segmentCount === 'number' && result.segmentCount !== check.segmentCount) return false;
       if (typeof check.maxGap === 'number' && result.maxGap > check.maxGap + eps) return false;
       if (typeof check.minLength === 'number' && result.minLength + eps < check.minLength) return false;
+      if (typeof check.maxClosureGap === 'number' && result.closureGap > check.maxClosureGap + eps) return false;
+      if (check.requireClosed === true) {
+        const maxClosureGap = typeof check.maxClosureGap === 'number' ? check.maxClosureGap : eps;
+        if (result.closureGap > maxClosureGap + eps) return false;
+      }
       return true;
     }
     default:
@@ -651,7 +710,9 @@ function runFixture(file) {
       error: 'Fixture has no expected.checks'
     };
   }
-  const checkResults = checks.map(ch => ({
+  const checkResults = checks.map((ch, index) => ({
+    index,
+    id: typeof ch.id === 'string' ? ch.id : null,
     kind: ch.kind,
     passed: runCheck(fix, ch),
     repeats: ch.kind === 'deterministic_outcome' ? (ch.repeats || 30) : undefined
@@ -775,9 +836,11 @@ function main() {
   const determinismRows = [...core.results, ...edge.results]
     .flatMap(r => (r.checkResults || [])
       .filter(c => c.kind === 'deterministic_outcome')
-      .map(c => ({
+      .map((c, detIndex) => ({
         fixture: r.name,
         bucket: core.results.includes(r) ? 'core' : 'edge',
+        checkIndex: detIndex,
+        checkId: c.id || null,
         passed: c.passed,
         repeats: c.repeats || 30
       })));
