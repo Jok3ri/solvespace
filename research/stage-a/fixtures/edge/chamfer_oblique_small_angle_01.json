@@ -1,0 +1,40 @@
+{
+  "name": "chamfer_oblique_small_angle_01",
+  "type": "edit_op",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": -3.0,
+        "y1": -0.3,
+        "x2": 0.0,
+        "y2": 0.0
+      },
+      "lineB": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 4.0,
+        "y2": 0.2
+      }
+    },
+    "operation": {
+      "kind": "chamfer",
+      "distance": 0.3
+    }
+  },
+  "expected": {
+    "status": "ok_or_diagnostic",
+    "checks": [
+      {
+        "kind": "deterministic_outcome",
+        "repeats": 30,
+        "id": "det_chamfer_oblique_small_angle_01"
+      }
+    ]
+  },
+  "tags": [
+    "edit-op",
+    "chamfer",
+    "oblique",
+    "small-angle"
+  ]
+}

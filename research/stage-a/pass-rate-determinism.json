@@ -1,0 +1,136 @@
+{
+  "generatedAt": "2026-04-08T17:28:14.093Z",
+  "total": 16,
+  "passed": 16,
+  "failed": 0,
+  "checks": [
+    {
+      "fixture": "chamfer_oblique_small_angle_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_chamfer_oblique_small_angle_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "fillet_oblique_small_angle_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_fillet_oblique_small_angle_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "offset_chain_bevel_policy_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_bevel_policy_01",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_complexity_guard_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_complexity_guard_01",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_concave_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_concave_continuity_01",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_convex_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_convex_continuity_01",
+      "passed": true,
+      "repeats": 40
+    },
+    {
+      "fixture": "offset_chain_mixed_turn_stress_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_mixed_turn_stress_01",
+      "passed": true,
+      "repeats": 50
+    },
+    {
+      "fixture": "offset_chain_multisegment_zigzag_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_multisegment_zigzag_01",
+      "passed": true,
+      "repeats": 50
+    },
+    {
+      "fixture": "offset_chain_round_policy_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_offset_chain_round_policy_01",
+      "passed": true,
+      "repeats": 50
+    },
+    {
+      "fixture": "tiny_radius_fillet_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_tiny_radius_fillet_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_closed_loop_oblique_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_closed_loop_oblique_continuity_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_closed_loop_square_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_closed_loop_square_continuity_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_fillet_chamfer_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_multistep_fillet_chamfer_continuity_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_multistep_trim_extend_continuity_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_multistep_trim_extend_continuity_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_near_closed_gap_budget_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_near_closed_gap_budget_01",
+      "passed": true,
+      "repeats": 30
+    },
+    {
+      "fixture": "topology_segment_count_guard_01",
+      "bucket": "edge",
+      "checkIndex": 0,
+      "checkId": "det_topology_segment_count_guard_01",
+      "passed": true,
+      "repeats": 30
+    }
+  ]
+}

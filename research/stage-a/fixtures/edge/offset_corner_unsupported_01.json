@@ -1,0 +1,33 @@
+{
+  "name": "offset_corner_unsupported_01",
+  "type": "edit_op_offset",
+  "inputs": {
+    "entities": {
+      "lineA": {
+        "x1": 0.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 0.0
+      },
+      "lineB": {
+        "x1": 10.0,
+        "y1": 0.0,
+        "x2": 10.0,
+        "y2": 10.0
+      }
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "unsupported_preview",
+      "distance": 2.0,
+      "side": "positive_y"
+    }
+  },
+  "expected": {
+    "status": "diagnostic",
+    "checks": [
+      { "kind": "offset_unsupported", "reason": "unsupported_mode" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "topology", "diagnostic"]
+}

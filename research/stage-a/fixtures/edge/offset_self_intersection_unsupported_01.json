@@ -1,0 +1,28 @@
+{
+  "name": "offset_self_intersection_unsupported_01",
+  "type": "edit_op_offset",
+  "inputs": {
+    "entities": {
+      "polyline": [
+        { "x": 0.0, "y": 0.0 },
+        { "x": 4.0, "y": 0.0 },
+        { "x": 2.0, "y": 2.0 },
+        { "x": 4.0, "y": 4.0 },
+        { "x": 0.0, "y": 4.0 }
+      ]
+    },
+    "operation": {
+      "kind": "offset",
+      "mode": "unsupported_preview",
+      "distance": 1.0,
+      "side": "positive_y"
+    }
+  },
+  "expected": {
+    "status": "diagnostic",
+    "checks": [
+      { "kind": "offset_unsupported", "reason": "unsupported_mode" }
+    ]
+  },
+  "tags": ["edit-op", "offset", "topology", "diagnostic", "self_intersection"]
+}
