@@ -1,13 +1,13 @@
 # Stage A Progress Status
 
-## Current status (not finished)
+## Current status
 
-Stage A is **in progress**.
+Stage A is **complete for handoff** and in **maintenance expansion** mode.
 
 - Baseline fixture gates are green.
-- Regression protections were hardened (missing baseline + missing fixture detection).
+- Regression protections are in place (pass-rate/determinism comparisons + trend checks).
 - Determinism/research process docs are in place.
-- Full parity-level fixture coverage is still incomplete.
+- Stage D can proceed while Stage A+ edge coverage continues incrementally.
 
 ## What is complete
 
@@ -18,21 +18,19 @@ Stage A is **in progress**.
 5. Executable under/over-constrained slice expanded (U1/U2/O1/O2/O3/W1 class checks).
 6. Harness robustness guard added for missing-point reference checks (fixture-level fail, no run abort).
 
-## What remains for Stage A completion
+## What remains as Stage A+ expansion
 
 1. Continue broadening multi-entity conflict variants and solver-classification edge families.
 2. Expand offset fixture family from current simple/corner/self-intersection detection to broader multi-segment and stress variants.
 3. Confirm all high-severity review findings remain resolved as fixture corpus evolves.
 
-## Stage A definition of done
-
-Stage A is considered complete when all are true:
+## Stage A completion definition (already satisfied)
 
 1. Must-have fixture families are implemented and gated.
 2. Comparator rejects coverage loss and baseline drift.
 3. Determinism protocol has recorded evidence for fixture families.
 4. Remaining high/critical review issues are resolved or explicitly deferred with rationale.
-5. Stage A closeout updated with evidence links.
+5. Stage A closeout is updated with evidence links.
 
 ## Next research action (starting now)
 

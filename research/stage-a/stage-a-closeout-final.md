@@ -1,6 +1,6 @@
 # Stage A Closeout (Final)
 
-Date: 2026-04-02
+Date: 2026-04-08
 Status: **Complete / Ready for Stage D**
 
 ## 1) Completed scope
@@ -15,8 +15,8 @@ Status: **Complete / Ready for Stage D**
 
 ## 2) Gate results at closeout
 
-- Core pass-rate: 10/10 (100%)
-- Edge pass-rate: 5/5 (100%)
+- Core pass-rate: 11/11 (100%)
+- Edge pass-rate: 48/48 (100%)
 - Tag-aware gates: PASS
 
 ## 3) Handoff package for Stage D

@@ -61,6 +61,8 @@ Generate Stage A status report: `node research/stage-a/generate-stage-a-status-r
 Append Stage A status history: `node research/stage-a/append-stage-a-status-history.js`.
 Render Stage A status trend: `node research/stage-a/render-stage-a-status-trend.js`.
 Check Stage A status trend: `node research/stage-a/check-stage-a-status-trend.js`.
+Check Stage A closeout vs summary consistency: `node research/stage-a/check-closeout-consistency.js`.
+Check Stage A status-report JSON consistency: `node research/stage-a/check-status-report-consistency.js`.
 Initialize runtime trace session: `node research/stage-a/init-trace-session.js --id <trace_id>`.
 Stage B/C trace capture template: `research/stage-a/stage-bc-trace-capture-template.md`.
 Under/over-constrained fixture design draft: `research/stage-a/under-over-constrained-fixture-design.md`.
